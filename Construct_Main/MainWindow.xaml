@@ -11,19 +11,19 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
-    <Border x:Name="MainBorder" Background="#f5f5f5" CornerRadius="20" BorderThickness="2" BorderBrush="DarkGray">
+    <Border x:Name="MainBorder" Background="{StaticResource BackgroundColor}" CornerRadius="20" BorderThickness="2" BorderBrush="DarkGray">
         <Grid >
-            <Border CornerRadius="20,20,0,0" Background="White" Height="30" VerticalAlignment="Top">
+            <Border CornerRadius="20,20,0,0" Background="{StaticResource BackgroundColor}" Height="30" VerticalAlignment="Top">
                 <Rectangle Panel.ZIndex="1" x:Name="DragRectangle" MouseDown="DragRectangle_MouseDown" Fill="Transparent" VerticalAlignment="Top" Height="30"/>
             </Border>
             <StackPanel Panel.ZIndex="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Height="auto" Grid.ColumnSpan="2">
-                
-                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource PrimaryHueLightBrush}">
+
+                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource BackgroundColor}">
                     <materialDesign:PackIcon Kind="ColorHelper" HorizontalAlignment="Center" Foreground="Black"/>
                 </Button>
-                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0"
+                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource BackgroundColor}"
                         Command="{Binding MaxMinCommand}"
-                        Background="{StaticResource PrimaryHueLightBrush}" Cursor="Hand">
+                        Cursor="Hand">
                     <materialDesign:PackIcon Kind="VectorArrangeBelow" HorizontalAlignment="Center" Foreground="Black"/>
                 </Button>
                 <Button x:Name="CloseButton" Style="{DynamicResource MaterialDesignFlatDarkBgButton}"
@@ -39,7 +39,7 @@
             </StackPanel>
 
             <Button Panel.ZIndex="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    Background="#06283D" 
+                    Background="#f8c365" 
                     BorderBrush="Transparent"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -48,7 +48,7 @@
                     Cursor="Hand">
                 <materialDesign:PackIcon Kind="Menu" Foreground="White"></materialDesign:PackIcon>
             </Button>
-            
+
             <components:SideMenu x:Name="SideMenuBar" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-260,30,0,0" Loaded="SideMenuBar_Loaded"/>
 
             <Frame Margin="10,10,10,10" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>

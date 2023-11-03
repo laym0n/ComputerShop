@@ -184,7 +184,7 @@ namespace Construct_Main.ViewModel
             if (authService.TryAuthorization(login, password))
             {
                 var u = authService.GetCurrentUser();
-                MainText = "Добро пожаловать, " + u.Name + '\n' + u.Status;
+                MainText = u.Name + ", Вы успешно вошли,\nкак " + u.Status;
                 IsAuth = Visibility.Hidden;
                 IsReg = Visibility.Hidden;
                 IsIn = Visibility.Visible;
@@ -192,7 +192,7 @@ namespace Construct_Main.ViewModel
             }
             else
             {
-                var mb = new Windows.CustomMessageBox("Неверный логин или пароль", "Ошибка авторизации");
+                var mb = new Windows.CustomMessageBox("Неверный логин или пароль", "Ошибка аутентификации");
                 IsAuth = Visibility.Visible;
                 IsReg = Visibility.Hidden;
                 IsIn = Visibility.Hidden;
@@ -217,12 +217,12 @@ namespace Construct_Main.ViewModel
             IsAuth = Visibility.Collapsed;
             IsIn = Visibility.Collapsed;
             IsReg = Visibility.Visible;
-            MainText = "Создайте аккаунт";
+            MainText = "Создание аккаунта";
         }
 
         public void CloseRegister()
         {
-            MainText = "Войдите в систему";
+            MainText = "Войти в ComputerShop";
             IsAuth = Visibility.Visible;
             IsReg = Visibility.Collapsed;
             IsIn = Visibility.Collapsed;

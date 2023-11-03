@@ -8,14 +8,14 @@
         mc:Ignorable="d"
         Title="CustomMessageBox" Height="200" Width="400"
         WindowStyle="None"
-        Background="Transparent"
+        Background="{StaticResource BackgroundColor}"
         AllowsTransparency="True">
-    <Border x:Name="MainBorder" Background="#f5f5f5" CornerRadius="20" BorderThickness="2" BorderBrush="DarkGray">
+    <Border x:Name="MainBorder" CornerRadius="20" BorderThickness="2" BorderBrush="DarkGray" Background="{StaticResource BackgroundColor}">
         <Grid>
-            <Border CornerRadius="20,20,0,0" Background="White" Height="30" VerticalAlignment="Top">
+            <Border CornerRadius="20,20,0,0" Background="{StaticResource BackgroundColor}" Height="30" VerticalAlignment="Top">
                 <Rectangle Panel.ZIndex="1" x:Name="DragRectangle" MouseDown="DragRectangle_MouseDown" Fill="Transparent" VerticalAlignment="Top" Height="30"/>
             </Border>
-            <TextBlock Margin="10,0,0,0" IsHitTestVisible="False"  FontSize="20" x:Name="HeadText">Ошибка авторизации</TextBlock>
+            <TextBlock Foreground="{StaticResource GrayColor}" HorizontalAlignment="Center" IsHitTestVisible="False"  FontSize="20" x:Name="HeadText">Ошибка авторизации</TextBlock>
             <StackPanel Panel.ZIndex="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Height="auto" Grid.ColumnSpan="2">
 
                 <Button x:Name="CloseButton" Style="{DynamicResource MaterialDesignFlatDarkBgButton}"
@@ -29,9 +29,10 @@
                 </Button>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" x:Name="MainText">Неверный логин или пароль</TextBlock>
+                <TextBlock Foreground="{StaticResource GrayColor}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" x:Name="MainText">Неверный логин или пароль</TextBlock>
                 <Button
                     Margin="20"
+                    Background="{StaticResource OrangeColor}"
                     Style="{DynamicResource MaterialDesignFlatAccentBgButton}"
                     Width="150" Cursor="Hand"
                     Click="CloseButton_Click">

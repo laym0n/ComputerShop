@@ -40,7 +40,7 @@ namespace BLL
                     curUser.type = UserType.Customer;
                     curUser.id = c.id;
                     curUser.Name = c.name;
-                    curUser.Status = "Желаем хороших покупок";
+                    curUser.Status = "покупатель";
                     return true;
                 }
 
@@ -56,7 +56,7 @@ namespace BLL
                     curUser.type = UserType.Seller;
                     curUser.id = s.id;
                     curUser.Name = s.name;
-                    curUser.Status = "Желаем высокой зарплаты";
+                    curUser.Status = "продавец";
                     return true;
                 }
 

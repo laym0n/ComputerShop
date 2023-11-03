@@ -7,7 +7,8 @@
       xmlns:local="clr-namespace:Construct_Main.View" xmlns:components="clr-namespace:Construct_Main.Components"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthPage">
+      Title="AuthPage"
+      Background="{StaticResource BackgroundColor}">
 
     <Page.Resources>
         <local:MyConverter x:Key="MyConverter"></local:MyConverter>
@@ -19,28 +20,39 @@
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="50" HorizontalAlignment="Center" Text="{Binding MainText}"/>
+        <TextBlock Foreground="{StaticResource GrayColor}" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" FontSize="50" HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding MainText}"/>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Visibility="{Binding IsAuth}">
-            <Border Margin="10" CornerRadius="10" Background="White" Width="300" Height="50">
-                <StackPanel Orientation="Horizontal" MinWidth="300">
-                    <materialDesign:PackIcon Kind="Person" Width="50" Height="50" VerticalAlignment="Center"/>
-                    <TextBox x:Name="LoginBox" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
-                </StackPanel>
+        <StackPanel  Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Visibility="{Binding IsAuth}" Height="224">
+            <Border Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Height="50">
+                <Grid MinWidth="300" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Логин:</TextBlock>
+                    <TextBox Grid.Column="1" x:Name="LoginBox" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
+                </Grid>
             </Border>
-            <Border Margin="10" CornerRadius="10" Background="White" Width="300" Height="50">
-                <StackPanel Orientation="Horizontal" MinWidth="300">
-                    <materialDesign:PackIcon Kind="Key" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
-                    <PasswordBox x:Name="PassBox" FontSize="22" MinWidth="230" Margin="5" MaxLength="18"/>
-                </StackPanel>
+            <Border Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Height="50">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Пароль:</TextBlock>
+                    <PasswordBox Grid.Column="1" x:Name="PassBox" FontSize="22" MinWidth="230" Margin="5" MaxLength="18"/>
+                </Grid>
             </Border>
             <Button
                 Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                Width="100" Cursor="Hand"
-                Command="{Binding AuthCommand}">
+                Width="170" Cursor="Hand"
+                Command="{Binding AuthCommand}"
+                Background="{StaticResource OrangeColor}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MyConverter}">
                         <Binding Path="Text" ElementName="LoginBox"/>
@@ -54,80 +66,108 @@
                 Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                 Width="170" Cursor="Hand"
                 Margin="10"
-                Command="{Binding OpenRegisterCommand}">
+                Command="{Binding OpenRegisterCommand}"
+                Background="{StaticResource OrangeColor}">
                 Зарегистрироваться
             </Button>
         </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Visibility="{Binding IsIn}">
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" Visibility="{Binding IsIn}" Height="32">
             <Button
+                Background="{StaticResource OrangeColor}" 
                 Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                Width="100" Cursor="Hand"
+                Width="170" Cursor="Hand"
                 Command="{Binding LogOutCommand}"
                 VerticalAlignment="Center">
-                Выйти
+                Выйти с аккаунта
             </Button>
         </StackPanel>
 
 
         <Button Grid.Row="0"
+                Grid.Column="2"
                 Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                HorizontalAlignment="Right"
-                Margin="0,0,10,0"
+                HorizontalAlignment="Left"
+                Margin="217,59,0,58"
                 Command="{Binding CloseRegisterCommand}"
-                Visibility="{Binding IsReg}">
-            <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+                Visibility="{Binding IsReg}" Width="40">
+            <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="{StaticResource YellowColor}"></materialDesign:PackIcon>
         </Button>
-        
-        <ScrollViewer Grid.Column="0" Grid.Row="1"  Visibility="{Binding IsReg}">
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1"  Visibility="{Binding IsReg}">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-            
-                <Border HorizontalAlignment="Left" Margin="10" CornerRadius="10" Background="White" MaxWidth="320" Width="auto" Height="50">
-                    <StackPanel Orientation="Horizontal" MinWidth="300">
-                        <TextBlock  FontSize="22" Margin="10" FontWeight="Bold">Имя:</TextBlock>
-                        <TextBox x:Name="Name" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
-                    </StackPanel>
+
+                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}"  Height="50">
+                    <Grid MinWidth="300" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="22" Margin="10" FontWeight="Bold">Имя:</TextBlock>
+                        <TextBox Grid.Column="1" x:Name="Name" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
+                    </Grid>
                 </Border>
 
-                <Border HorizontalAlignment="Left" Margin="10" CornerRadius="10" Background="White" MaxWidth="370" Width="auto" Height="50">
-                    <StackPanel Orientation="Horizontal" MinWidth="300" Width="auto">
-                        <TextBlock  FontSize="22" Margin="10" FontWeight="Bold">Фамилия: </TextBlock>
-                        <TextBox x:Name="SerName" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
-                    </StackPanel>
+                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Width="auto" Height="50">
+                    <Grid MinWidth="300"  HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Фамилия:</TextBlock>
+                        <TextBox Grid.Column="1" x:Name="SerName" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
+                    </Grid>
                 </Border>
 
 
-                <Border HorizontalAlignment="Left" Margin="10" CornerRadius="10" Background="White" MaxWidth="380" Width="auto" Height="50">
-                    <StackPanel Orientation="Horizontal" MinWidth="300" Width="auto">
-                        <TextBlock  FontSize="22" Margin="10" FontWeight="Bold">Дата рождения:</TextBlock>
-                        <DatePicker x:Name="DateOfBirth" FontSize="22" FontWeight="Bold"></DatePicker>
-                    </StackPanel>
+                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Width="auto" Height="50">
+                    <Grid MinWidth="300" Width="auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Дата рождения:</TextBlock>
+                        <DatePicker Grid.Column="1" x:Name="DateOfBirth" FontSize="22" FontWeight="Bold"></DatePicker>
+                    </Grid>
                 </Border>
 
-                <Border HorizontalAlignment="Left" Margin="10" CornerRadius="10" Background="White" MaxWidth="370" Width="auto" Height="50">
-                    <StackPanel Orientation="Horizontal" MinWidth="300" Width="auto">
-                        <TextBlock  FontSize="22" Margin="10" FontWeight="Bold">Логин:</TextBlock>
-                        <TextBox x:Name="Login" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
-                    </StackPanel>
+                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Width="auto" Height="50">
+                    <Grid MinWidth="300" Width="auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Логин:</TextBlock>
+                        <TextBox Grid.Column="1" x:Name="Login" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
+                    </Grid>
                 </Border>
 
-                <Border HorizontalAlignment="Left" Margin="10" CornerRadius="10" Background="White" MaxWidth="500" Width="auto" Height="50">
-                    <StackPanel Orientation="Horizontal" MinWidth="300" Width="auto">
-                        <TextBlock  FontSize="22" Margin="10" FontWeight="Bold">Пароль:</TextBlock>
-                        <TextBox x:Name="Password" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
-                    </StackPanel>
+                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" MaxWidth="500" Width="auto" Height="50">
+                    <Grid MinWidth="300" Width="auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Пароль:</TextBlock>
+                        <TextBox Grid.Column="1" x:Name="Password" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
+                    </Grid>
                 </Border>
 
-                <Border HorizontalAlignment="Left" Margin="10" CornerRadius="10" Background="White" MaxWidth="500" Width="auto" Height="50">
-                    <StackPanel Orientation="Horizontal" MinWidth="300">
-                        <TextBlock  FontSize="22" Margin="10" FontWeight="Bold"> Повторите пароль:</TextBlock>
-                        <PasswordBox x:Name="PasswordCheck" FontSize="22" MinWidth="230" Margin="5" MaxLength="18"/>
-                    </StackPanel>
+                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Width="auto" Height="50">
+                    <Grid MinWidth="300">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Grid.Column="0" FontSize="22" Margin="10" FontWeight="Bold"> Повторите пароль:</TextBlock>
+                        <PasswordBox Grid.Column="1" x:Name="PasswordCheck" FontSize="22" MinWidth="230" Margin="5" MaxLength="18"/>
+                    </Grid>
                 </Border>
-            
+
                 <Button
                     Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                     Width="150" Cursor="Hand"
-                    Command="{Binding RegisterCommand}">
+                    Command="{Binding RegisterCommand}"
+                    Background="{StaticResource OrangeColor}" >
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource MyConverter}">
                             <Binding Path="Text" ElementName="Name"/>

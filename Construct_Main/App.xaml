@@ -12,12 +12,16 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Grey.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary200}"/>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#f8c365"/>
+            <SolidColorBrush x:Key="YellowColor" Color="#f8c365"/>
+            <SolidColorBrush x:Key="BackgroundColor" Color="#434050"/>
+            <SolidColorBrush x:Key="OrangeColor" Color="#c77135"/>
+            <SolidColorBrush x:Key="GrayColor" Color="#a4b2d4"/>
             <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}"/>
             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
             <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
             <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
-            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#434050"/>
 
         </ResourceDictionary>
     </Application.Resources>
