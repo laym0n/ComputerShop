@@ -29,6 +29,5 @@ namespace Construct_Main.View
             VM = new AuthViewModel(db, mw);
             DataContext = VM;
         }
-
     }
 }

@@ -20,12 +20,11 @@
             <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="161*"></ColumnDefinition>
             <ColumnDefinition Width="272*"></ColumnDefinition>
-            <ColumnDefinition Width="367*"></ColumnDefinition>
+            <ColumnDefinition Width="367"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock TextAlignment="Center" FontSize="50" Foreground="{StaticResource GrayColor}" Text="Лента товаров" Grid.Column="0" Grid.ColumnSpan="2"/>
-        <Border MinWidth="350" Grid.Row="0" x:Name="SerchBarBorder" CornerRadius="30" Background="{StaticResource YellowColor}" Height="50" VerticalAlignment="Top" Margin="15,30,15,0" Grid.Column="2">
+        <TextBlock TextAlignment="Center" FontSize="50" Foreground="{StaticResource GrayColor}" Text="Лента товаров" Grid.Column="0" VerticalAlignment="Center"/>
+        <Border Grid.Row="0" x:Name="SerchBarBorder" CornerRadius="30" Background="{StaticResource YellowColor}" Height="50" VerticalAlignment="Center" Margin="15,0,15,0" Grid.Column="1">
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -45,7 +44,7 @@
                 </Button>
             </Grid>
         </Border>
-        <ScrollViewer Grid.Column="1" Margin="0,112,0,0" Grid.RowSpan="2">
+        <ScrollViewer Grid.Column="0" Margin="0,112,0,0" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <ItemsControl x:Name="items" ItemsSource="{Binding Products}">
                     <ItemsControl.ItemTemplate>
@@ -57,41 +56,55 @@
             </StackPanel>
         </ScrollViewer>
 
-        <ScrollViewer Grid.Column="3" Margin="0,112,0,0" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
-            <Border CornerRadius="10" Background="{StaticResource YellowColor}" >
-                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                    <TextBlock Margin="10"> Цена</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Margin="5"> От</TextBlock>
-                        <components:NumberBox x:Name="LowerPrice" Margin="5,10,10,10" Width="60" HorizontalAlignment="Left"/>
-                        <TextBlock VerticalAlignment="Center"> До</TextBlock>
-                        <components:NumberBox x:Name ="TopPrice" Margin="5,10,10,10" Width="60" HorizontalAlignment="Right"/>
-                    </StackPanel>
-                    <TextBlock Margin="10"> Категория</TextBlock>
-                    <ComboBox x:Name="CaterogyComboBox" Margin="10" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
-                    <TextBlock Margin="10"> Скидка</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="HasSale" Margin="10">Есть</CheckBox>
-                        <CheckBox x:Name="NoSale" Margin="10">Нет</CheckBox>
-                    </StackPanel>
-                    <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
-                            Margin="20" 
+        <Border Visibility="{Binding Path=VisibleFilter}"  Margin="0 10 0 0" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" CornerRadius="10" Background="{StaticResource YellowColor}" >
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="20" Text="Категория"/>
+                <ComboBox x:Name="CaterogyComboBox" Margin="15, 0" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="20" Text="Производитель"/>
+                <ComboBox x:Name="ProducerComboBox" Margin="15, 0" ItemsSource="{Binding Manufacturers}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 10" FontSize="20" Text="Цена"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="0 0 5 0"> От</TextBlock>
+                    <components:NumberBox x:Name="LowerPrice" Width="60" HorizontalAlignment="Left"/>
+                    <TextBlock VerticalAlignment="Center" Margin="5 0"> До</TextBlock>
+                    <components:NumberBox x:Name ="TopPrice" Width="60" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
+                            Margin="15, 20, 15, 5"
                             Command="{Binding ApplyFilterCommand}" 
                             Background="{StaticResource OrangeColor}"
                             Cursor="Hand">
-                        <Button.CommandParameter>
-                            <MultiBinding Converter="{StaticResource MyConverter}">
-                                <Binding Path="Number" ElementName="LowerPrice"/>
-                                <Binding Path="Number" ElementName="TopPrice"/>
-                                <Binding Path="SelectedValue" ElementName="CaterogyComboBox"/>
-                                <Binding Path="IsChecked" ElementName="HasSale"/>
-                                <Binding Path="IsChecked" ElementName="NoSale"/>
-                            </MultiBinding>
-                        </Button.CommandParameter>
-                        Применить
-                    </Button>
-                </StackPanel>
-            </Border>
-        </ScrollViewer>
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MyConverter}">
+                            <Binding Path="Number" ElementName="LowerPrice"/>
+                            <Binding Path="Number" ElementName="TopPrice"/>
+                            <Binding Path="SelectedValue" ElementName="CaterogyComboBox"/>
+                            <Binding Path="IsChecked" ElementName="HasSale"/>
+                            <Binding Path="IsChecked" ElementName="NoSale"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                    Применить
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
+                            Margin="15, 5, 15, 15"
+                            Command="{Binding ChangeVisibiltyFilter}" 
+                            Background="{StaticResource OrangeColor}"
+                            Cursor="Hand">
+                    Скрыть фильтры
+                </Button>
+            </StackPanel>
+        </Border>
+        <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
+                Grid.Column="1"
+                Grid.Row="1"
+                Margin="0 10 0 0" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                            Visibility="{Binding Path=VisibleButtonForFilter}"  
+                            Command="{Binding ChangeVisibiltyFilter}" 
+                            Background="{StaticResource OrangeColor}"
+                            Cursor="Hand">
+            Фильтры
+        </Button>
     </Grid>
 </Page>

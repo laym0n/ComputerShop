@@ -6,12 +6,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using BLL;
 
 namespace Construct_Main.ViewModel
 {
-    public class CatalogViewModel
+    public class CatalogViewModel : INotifyPropertyChanged
     {
         private MainViewModel mainWindow;
         private OrderModel cart;
@@ -22,6 +23,7 @@ namespace Construct_Main.ViewModel
         private int categoryId;
         private bool hasSale;
         private bool noSale;
+        private bool visibleFilter = true;
 
         #region Commands
 
@@ -29,6 +31,14 @@ namespace Construct_Main.ViewModel
         private RelayCommand addtobusket;
         private RelayCommand removeProduct;
         private RelayCommand toproductpage;
+        private RelayCommand changeVisibiltyFilter;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand ApplyFilterCommand 
         { 
             get { return applyfiltercommand ?? (applyfiltercommand = new RelayCommand(obj => 
@@ -44,6 +54,22 @@ namespace Construct_Main.ViewModel
             }
         }
 
+        public Visibility VisibleFilter
+        {
+            get
+            {
+                return ((visibleFilter) ? Visibility.Visible : Visibility.Hidden);
+            }
+        }
+
+        public Visibility VisibleButtonForFilter
+        {
+            get
+            {
+                return ((!visibleFilter) ? Visibility.Visible : Visibility.Hidden);
+            }
+        }
+
         public RelayCommand AddToBusketCommand
         {
             get
@@ -51,6 +77,19 @@ namespace Construct_Main.ViewModel
                 return addtobusket ?? (addtobusket = new RelayCommand(obj =>
                 {
                     AddProductToBusket(Int32.Parse((string)obj));
+                }));
+            }
+        }        
+        
+        public RelayCommand ChangeVisibiltyFilter
+        {
+            get
+            {
+                return changeVisibiltyFilter ?? (changeVisibiltyFilter = new RelayCommand(obj =>
+                {
+                    visibleFilter = !visibleFilter;
+                    NotifyPropertyChanged(nameof(VisibleFilter));
+                    NotifyPropertyChanged(nameof(VisibleButtonForFilter));
                 }));
             }
         }
@@ -81,6 +120,7 @@ namespace Construct_Main.ViewModel
         public ObservableCollection<ProductModel> Products { get; set; }
         private List<ProductModel> productModels { get; set; }
         public List<CategoryModel> Categories { get; set; }
+        public List<ManufacturerModel> Manufacturers { get; set; }
         public CatalogViewModel(List<ProductModel> productModels, List<CategoryModel> categories, MainViewModel mainWindow, OrderModel cart)
         {
             Products = new ObservableCollection<ProductModel>();

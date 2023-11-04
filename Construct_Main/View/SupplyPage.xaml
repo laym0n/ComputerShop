@@ -53,7 +53,7 @@
             
         </ScrollViewer>
 
-        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="White" Margin="10" Width="auto">
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="{StaticResource YellowColor}" Margin="10" Width="auto">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="auto">
                 <TextBlock HorizontalAlignment="Center" FontSize="25"> Поставка</TextBlock>
                 <ComboBox x:Name="Supplier" FontSize="18" ItemsSource="{Binding Suppliers}" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="10"/>
