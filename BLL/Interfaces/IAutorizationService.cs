@@ -15,6 +15,6 @@ namespace BLL
 
         void LogOut();
 
-        void CreateCustomer(string name, string sername, DateTime dateofbirth, string login, string pass);
+        void CreateCustomer(string name, string sername, string login, string pass);
     }
 }

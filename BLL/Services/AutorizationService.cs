@@ -69,11 +69,10 @@ namespace BLL
             curUser.id = -1;
         }
 
-        public void CreateCustomer(string name, string sername, DateTime dateofbirth, string login, string pass)
+        public void CreateCustomer(string name, string sername, string login, string pass)
         {
             Customer c = new Customer
             {
-                date_of_birth = dateofbirth,
                 login = login,
                 password = pass,
                 name = name,

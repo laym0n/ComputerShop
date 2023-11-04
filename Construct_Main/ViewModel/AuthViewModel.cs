@@ -136,17 +136,16 @@ namespace Construct_Main.ViewModel
                     var values = (object[])obj;
                     string name = (string)values[0];
                     string sername = (string)values[1];
-                    DateTime? dateofbirth = (DateTime?)values[2];
-                    string login = (string)values[3];
-                    string pass = (string)values[4];
-                    PasswordBox passcheck = (PasswordBox)values[5];
-                    if (name == null || sername  == null || dateofbirth == null || login == null || passcheck == null)
+                    string login = (string)values[2];
+                    string pass = (string)values[3];
+                    PasswordBox passcheck = (PasswordBox)values[4];
+                    if (name == null || sername  == null || login == null || passcheck == null)
                     {
                         var mb = new Windows.CustomMessageBox("Не все данные введены", "Ошибка регистрации");
                         mb.ShowDialog();
                     }
                     else
-                        Register(name, sername, (DateTime)dateofbirth, login, pass, passcheck);
+                        Register(name, sername, login, pass, passcheck);
                 }));
             }
         }
@@ -228,11 +227,11 @@ namespace Construct_Main.ViewModel
             IsIn = Visibility.Collapsed;
         }
 
-        public void Register(string name, string sername, DateTime dateofbirth, string login, string pass, PasswordBox passcheck)
+        public void Register(string name, string sername, string login, string pass, PasswordBox passcheck)
         {
             if (pass == passcheck.Password)
             {
-                authService.CreateCustomer(name, sername, dateofbirth, login, pass);
+                authService.CreateCustomer(name, sername, login, pass);
                 Authorization(login, pass);
             }
             else

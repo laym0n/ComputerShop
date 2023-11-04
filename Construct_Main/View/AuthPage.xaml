@@ -118,18 +118,6 @@
                     </Grid>
                 </Border>
 
-
-                <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Width="auto" Height="50">
-                    <Grid MinWidth="300" Width="auto">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Дата рождения:</TextBlock>
-                        <DatePicker Grid.Column="1" x:Name="DateOfBirth" FontSize="22" FontWeight="Bold"></DatePicker>
-                    </Grid>
-                </Border>
-
                 <Border HorizontalAlignment="Stretch" Margin="10" CornerRadius="10" Background="{StaticResource YellowColor}" Width="auto" Height="50">
                     <Grid MinWidth="300" Width="auto">
                         <Grid.ColumnDefinitions>
@@ -172,7 +160,6 @@
                         <MultiBinding Converter="{StaticResource MyConverter}">
                             <Binding Path="Text" ElementName="Name"/>
                             <Binding Path="Text" ElementName="SerName"/>
-                            <Binding Path="SelectedDate" ElementName="DateOfBirth"/>
                             <Binding Path="Text" ElementName="Login"/>
                             <Binding Path="Text" ElementName="Password"/>
                             <Binding ElementName="PasswordCheck"/>

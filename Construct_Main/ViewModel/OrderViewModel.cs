@@ -215,7 +215,7 @@ namespace Construct_Main.ViewModel
                         CompleteVisibility = item.Status == 0 ? Visibility.Visible : Visibility.Collapsed,
                         OrderedVisibility = item.Status == 1 ? Visibility.Visible : Visibility.Collapsed,
                         VerifiedVisibility = item.Status == 2 ? Visibility.Visible : Visibility.Collapsed,
-                        CustomerInfo = c.Name + " " + c.DateOfBirth
+                        CustomerInfo = c.Name
                     });
                 }
             }

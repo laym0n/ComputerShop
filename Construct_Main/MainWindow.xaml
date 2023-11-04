@@ -18,10 +18,10 @@
             </Border>
             <StackPanel Panel.ZIndex="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Height="auto" Grid.ColumnSpan="2">
 
-                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource BackgroundColor}">
+                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource DarkerBackgroundColor}">
                     <materialDesign:PackIcon Kind="ColorHelper" HorizontalAlignment="Center" Foreground="Black"/>
                 </Button>
-                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource BackgroundColor}"
+                <Button Style="{DynamicResource MaterialDesignFlatAccentBgButton}" Height="30" BorderThickness="0" Background="{StaticResource DarkerBackgroundColor}"
                         Command="{Binding MaxMinCommand}"
                         Cursor="Hand">
                     <materialDesign:PackIcon Kind="VectorArrangeBelow" HorizontalAlignment="Center" Foreground="Black"/>
@@ -51,7 +51,7 @@
 
             <components:SideMenu x:Name="SideMenuBar" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-260,30,0,0" Loaded="SideMenuBar_Loaded"/>
 
-            <Frame Margin="10,10,10,10" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+            <Frame Margin="10,35,10,10" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
 
         </Grid>
     </Border>
