@@ -14,23 +14,22 @@
         <views:IntToBool x:Key="IntToBool"></views:IntToBool>
     </UserControl.Resources>
 
-    <Border CornerRadius="5" Background="White" BorderBrush="Gray" BorderThickness="1" Margin="10" Width="530" Height="50">
+    <Border CornerRadius="5" Background="{StaticResource YellowColor}" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="6">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="85"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition> 
+                <ColumnDefinition Width="120"></ColumnDefinition> 
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0" Height="40" Margin="10,0,0,0" Width="auto" Source="{Binding CategoryImageSource}" HorizontalAlignment="Left" />
+            <TextBlock Grid.Column="0" Text="{Binding Category}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
 
-            <TextBlock x:Name="Id" Text="{Binding Id}" Visibility="Hidden"></TextBlock>
-            <TextBlock x:Name="Name" Text="{Binding Name}" Height="auto" Width="auto" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" FontSize="20"/>
+            <TextBlock x:Name="Id" Text="{Binding Id}" Visibility="Hidden"/>
+            <TextBlock x:Name="Name" Text="{Binding Name}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
 
-            <TextBlock x:Name="Price" Text ="{Binding PriceString}" Height="auto" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Right" FontSize="20" Cursor="Hand">
-            </TextBlock>
+            <TextBlock x:Name="Price" Text ="{Binding PriceString}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Cursor="Hand"/>
 
             <Button Name="toProductButton" Grid.Column="3" Cursor="Hand" Width="40" Height="40"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
@@ -42,7 +41,7 @@
                 </Button.CommandParameter>
             </Button>
             
-            <Button Name="addButton" Grid.Column="4" Cursor="Hand" Width="40" Height="40"
+            <Button Name="addButton" Grid.Column="4" Cursor="Hand"
                     IsEnabled="{Binding Count, Converter={StaticResource IntToBool}}"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.AddToBusketCommand}"
@@ -54,7 +53,7 @@
                 </Button.CommandParameter>
             </Button>
 
-            <Button Name="removeButton" Grid.Column="4" Cursor="Hand" Width="40" Height="40"
+            <Button Name="removeButton" Grid.Column="4" Cursor="Hand"
                     IsEnabled="{Binding Count, Converter={StaticResource IntToBool}}"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     Background="Red"

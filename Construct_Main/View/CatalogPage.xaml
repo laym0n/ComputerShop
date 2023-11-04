@@ -14,7 +14,7 @@
         <local:MyConverter x:Key="MyConverter"></local:MyConverter>
     </Page.Resources>
 
-    <Grid Background="{Binding Background}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>

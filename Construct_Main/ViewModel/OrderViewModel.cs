@@ -14,7 +14,7 @@ namespace Construct_Main.ViewModel
     public struct ProductLine
     {
         public string Name { get; set; }
-        public Uri CategoryImageSource { get; set; }
+        public string CategoryImageSource { get; set; }
         public int CountInOrder { get; set; }
     }
     public struct OrderLine
@@ -159,7 +159,7 @@ namespace Construct_Main.ViewModel
                         pr.Add(new ProductLine
                         {
                             Name = p.Name,
-                            CategoryImageSource = p.CategoryImageSource,
+                            CategoryImageSource = p.Category,
                             CountInOrder = item.ProductCounts[i]
                         });
                     }
@@ -197,7 +197,7 @@ namespace Construct_Main.ViewModel
                         pr.Add(new ProductLine
                         {
                             Name = p.Name,
-                            CategoryImageSource = p.CategoryImageSource,
+                            CategoryImageSource = p.Category,
                             CountInOrder = item.ProductCounts[i]
                         });
                     }

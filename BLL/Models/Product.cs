@@ -16,7 +16,7 @@ namespace BLL
         public int ManufId { get; set; }
         public string ManufacturerName { get; set; }
         public int CategoryId { get; set; }
-        public Uri CategoryImageSource { get; set; }
+        public string Category { get; set; }
         public string Description { get; set; }
         public int Count { get; set; }
         public bool IsInBusket { get; set; }
@@ -32,8 +32,7 @@ namespace BLL
             ManufId = (int)p.id_manufacturer;
             ManufacturerName = p.Manufacturer.name;
             CategoryId = (int)p.id_category;
-            string v = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Sources\\Category_" + CategoryId.ToString() + ".png";
-            CategoryImageSource = new Uri(v);
+            Category = p.Category.name;
             Description = p.description;
             Count = (int)p.count;
             IsInBusket = p.Order_line.Where(i => i.OrderC.id_status == 3).FirstOrDefault() == null ? false : true; 

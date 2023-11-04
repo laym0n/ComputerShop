@@ -12,20 +12,19 @@
 
 
     
-    <Grid Background="{Binding Path=Background}" Margin="0,30,0,0">
+    <Grid Margin="0,30,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="50" Margin="70,0,0,0">
-            Поставка
-        </TextBlock>
-        <ScrollViewer  Grid.Column="0" Grid.Row="1">
+        <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource GrayColor}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" FontSize="50" Text="Заказать для магазина"/>
+
+        <ScrollViewer  Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <ItemsControl ItemsSource="{Binding SupplyLines}">
                     <ItemsControl.ItemTemplate>
@@ -53,22 +52,19 @@
             
         </ScrollViewer>
 
-        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="{StaticResource YellowColor}" Margin="10" Width="auto">
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="{StaticResource YellowColor}" Margin="10" Width="auto" Height="auto" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="auto">
-                <TextBlock HorizontalAlignment="Center" FontSize="25"> Поставка</TextBlock>
-                <ComboBox x:Name="Supplier" FontSize="18" ItemsSource="{Binding Suppliers}" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="10"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Заказ"/>
                 <TextBlock HorizontalAlignment="Left" FontSize="15" Margin="10"> Итого</TextBlock>
-                <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="10" FontWeight="Bold" Text="{Binding PriceText, StringFormat={}{0} руб.}"></TextBlock>
-                <StackPanel Orientation="Horizontal" Height="auto">
-                    <TextBlock HorizontalAlignment="Left" FontSize="15" Margin="10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Right" FontSize="15" Margin="10"></TextBlock>
-                </StackPanel>
+                <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="10" FontWeight="Bold" Text="{Binding PriceText, StringFormat={}{0} руб.}"/>
                 <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                         Command="{Binding MakeSupplyCommand}"
                         CommandParameter="{Binding Path=SelectedValue, ElementName=Supplier}"
                         Width="auto"
+                        Foreground="Black"
+                        Background="{StaticResource OrangeColor}"
                         Margin="10" VerticalAlignment="Bottom" materialDesign:ButtonAssist.CornerRadius="5" Cursor="Hand">
-                    Оформить поставку
+                    Заказать
                 </Button>
             </StackPanel>
         </Border>

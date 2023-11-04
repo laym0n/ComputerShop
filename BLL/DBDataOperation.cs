@@ -53,15 +53,11 @@ namespace BLL
         {
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();
             Category c = context.Categories.GetList().Where(i => i.id == p.CategoryId).FirstOrDefault();
-            int id;
-            if (p.Id != -1)
-                id = p.Id;
-            else
-                id = context.Products.GetList().OrderByDescending(i => i.id).FirstOrDefault().id + 1;
 
-            context.Products.Create(new Product {id = id, price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, sale = p.Sale, count = 0, Manufacturer = m, Category = c});
+            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, sale = p.Sale, count = 0, Manufacturer = m, Category = c };
+            context.Products.Create(newProduct);
             Save();
-            return id;
+            return newProduct.id;
         }
         public void UpdateProduct(ProductModel p)
         {

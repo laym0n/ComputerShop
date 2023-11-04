@@ -28,7 +28,7 @@ namespace Construct_Main.ViewModel
             public string ProductName { get; set; }
             public int Count { get; set; }
             public string CountString { get; set; }
-            public Uri CategoryImageSource { get; set; }
+            public string Category { get; set; }
             public decimal Price { get; set; }
             public string PriceString { get; set; }
         }
@@ -76,22 +76,22 @@ namespace Construct_Main.ViewModel
                 {
                     var values = (object[])obj;
                     string realV = (string)values[1];
-                    int pId = AddProductLines[Int32.Parse((string)values[0])].Id;
+                    int lineId = Int32.Parse((string)values[0]);
+                    AddSupplyLine lineForReplace = AddProductLines.FirstOrDefault(i => i.Id == lineId);
+                    int pId = AddProductLines.IndexOf(lineForReplace);
                     switch (realV)
                     {
                         case "Новый товар":
                             {
-                                AddProductLines[pId] = new AddSupplyLine { Id = pId, ChoiceProduct = false, ExistProduct = false, NewProduct = true };
+                                AddProductLines[pId] = new AddSupplyLine { Id = lineId, ChoiceProduct = false, ExistProduct = false, NewProduct = true };
                             }
                             break;
                         case "Существующий товар":
                             {
-                                AddProductLines[pId] = new AddSupplyLine { Id = pId, ChoiceProduct = false, ExistProduct = true, NewProduct = false };
+                                AddProductLines[pId] = new AddSupplyLine { Id = lineId, ChoiceProduct = false, ExistProduct = true, NewProduct = false };
                             }
                             break;
                     }
-
-                    NotifyPropertyChanged("AddProductLines");
                 }));
             }
         }
@@ -196,7 +196,8 @@ namespace Construct_Main.ViewModel
 
         private void AddNewProduct(int line_id, string name, int id_cat, int id_manuf, decimal price, string description, int count, decimal supply_price)
         {
-            AddProductLines.RemoveAt(line_id);
+            AddSupplyLine lineForRemove = AddProductLines.FirstOrDefault(i => i.Id == line_id);
+            AddProductLines.Remove(lineForRemove);
 
             var p = new ProductModel
             {
@@ -218,7 +219,7 @@ namespace Construct_Main.ViewModel
                 ProductName = p.Name,
                 CountString = count.ToString() + " шт.",
                 Count = count,
-                CategoryImageSource = p.CategoryImageSource,
+                Category = p.Category,
                 Price = supply_price,
                 PriceString = supply_price.ToString() + " руб"
             });
@@ -229,12 +230,13 @@ namespace Construct_Main.ViewModel
 
         private void AddExistProduct(int line_id, int product_id, int count, decimal supply_price)
         {
-            AddProductLines.RemoveAt(line_id);
+            AddSupplyLine lineForRemove = AddProductLines.FirstOrDefault(i => i.Id == line_id);
+            AddProductLines.Remove(lineForRemove);
             var p = context.GetProduct(product_id);
 
             var sl = SupplyLines.Where(i => i.ProductId == product_id).FirstOrDefault();
 
-            if (sl.ProductName == null)
+            if (sl.ProductName == null || (sl.ProductName != null && !sl.Price.Equals(supply_price)))
             {
                 SupplyLines.Add(new SupplyLine
                 {
@@ -242,7 +244,7 @@ namespace Construct_Main.ViewModel
                     ProductName = p.Name,
                     Count = count,
                     CountString = count.ToString() + " шт.",
-                    CategoryImageSource = p.CategoryImageSource,
+                    Category = p.Category,
                     Price = supply_price,
                     PriceString = supply_price.ToString() + " руб"
                 });
@@ -253,7 +255,7 @@ namespace Construct_Main.ViewModel
                 SupplyLines.Add(new SupplyLine
                 {
                     ProductId = sl.ProductId,
-                    CategoryImageSource = sl.CategoryImageSource,
+                    Category = sl.Category,
                     Count = sl.Count + count,
                     ProductName = sl.ProductName,
                     Price = supply_price,
