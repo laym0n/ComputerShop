@@ -69,7 +69,7 @@ namespace BLL
             pr.id_category = p.CategoryId;
             pr.id_manufacturer = p.ManufId;
             pr.sale = p.Sale;
-            pr.count = 1;
+            pr.count = p.Count;
 
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();
             Category c = context.Categories.GetList().Where(i => i.id == p.CategoryId).FirstOrDefault();

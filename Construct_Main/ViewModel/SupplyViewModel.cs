@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-using System.Windows.Media.Animation;
 using BLL;
 
 namespace Construct_Main.ViewModel
@@ -25,6 +21,7 @@ namespace Construct_Main.ViewModel
         public struct SupplyLine
         {
             public int ProductId { get; set; }
+            public ProductModel ProductModel { get; set; }
             public string ProductName { get; set; }
             public int Count { get; set; }
             public string CountString { get; set; }
@@ -162,7 +159,7 @@ namespace Construct_Main.ViewModel
             {
                 return makesupply ?? (makesupply = new RelayCommand(obj =>
                 {
-                    MakeSupply((int)obj);
+                    MakeSupply();
                 }));
             }
         }
@@ -198,7 +195,7 @@ namespace Construct_Main.ViewModel
         {
             AddSupplyLine lineForRemove = AddProductLines.FirstOrDefault(i => i.Id == line_id);
             AddProductLines.Remove(lineForRemove);
-
+            
             var p = new ProductModel
             {
                 Id = -1,
@@ -206,20 +203,19 @@ namespace Construct_Main.ViewModel
                 Price = price,
                 CategoryId = id_cat,
                 ManufId = id_manuf,
-                Count = 0,
+                Count = count,
                 Name = name,
                 Sale = 0
             };
-            int id = context.CreateProduct(p);
-            p = context.GetProduct(id);
-            
-            SupplyLines.Add(new SupplyLine 
+
+            SupplyLines.Add(new SupplyLine
             {
-                ProductId = id,
-                ProductName = p.Name,
+                ProductId = -1,
+                ProductName = name,
                 CountString = count.ToString() + " шт.",
                 Count = count,
-                Category = p.Category,
+                ProductModel = p,
+                Category = Categories.Where(i => i.Id.Equals(id_cat)).FirstOrDefault().Name,
                 Price = supply_price,
                 PriceString = supply_price.ToString() + " руб"
             });
@@ -274,25 +270,25 @@ namespace Construct_Main.ViewModel
             PriceText = PriceText - p.Price * p.Count;
         }
 
-        private void MakeSupply(int sup_id)
+        private void MakeSupply()
         {
-            SupplyModel sup = new SupplyModel
+            foreach(SupplyLine supplier in SupplyLines) 
             {
-                Id = -1,
-                Date = DateTime.Now,
-                ProductCounts = SupplyLines.Select(i => i.Count).ToList(),
-                ProductPrices = SupplyLines.Select(i => i.Price).ToList(),
-                ProductsIds = SupplyLines.Select(i => i.ProductId).ToList(),
-                SupplierId = sup_id,
-                TotalCost = SupplyLines.Select(i => i.Count * i.Price).Sum()
-            };
-            supplyService.MakeSupply(sup);
+                if (supplier.ProductId == -1)
+                {
+                    int id = context.CreateProduct(supplier.ProductModel);
+                    supplier.ProductModel.Id = id;
+                }
+                else { 
+                    ProductModel productModel = context.GetProduct(supplier.ProductId);
+                    productModel.Count += supplier.Count;
+                    context.UpdateProduct(productModel);
+                }
+            }
 
             SupplyLines.Clear();
             AddProductLines.Clear();
             PriceText = 0;
-
-
         }
     }
 }

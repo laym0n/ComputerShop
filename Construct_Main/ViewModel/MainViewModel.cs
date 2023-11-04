@@ -217,7 +217,7 @@ namespace Construct_Main.ViewModel
         private void NavigatetoToSupplyPage()
         {
             Busket = crudServ.CreateBusket();
-
+            pr = crudServ.GetAllProduct();
             MainFrame.Navigate(new View.SupplyPage(crudServ, supplyService, pr));
             SideMenuBar.CloseSide();
         }
