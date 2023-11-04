@@ -13,36 +13,39 @@
     <Page.Resources>
         <local:MyConverter x:Key="MyConverter"></local:MyConverter>
     </Page.Resources>
-    
+
     <Grid Background="{Binding Path=Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.1*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="161*"></ColumnDefinition>
+            <ColumnDefinition Width="272*"></ColumnDefinition>
+            <ColumnDefinition Width="367*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Grid.ColumnSpan="2" x:Name="SerchBarBorder" CornerRadius="30" Background="White" Height="50" Width="350" VerticalAlignment="Top" Margin="30">
-            <Grid 
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Width="auto"
-                MinWidth="350">
-                <TextBox x:Name="SearchBox" TextChanged="SearchBox_TextChanged" Margin="20,0,45,10" FontSize="22" TextAlignment="Left" VerticalAlignment="Bottom"/>
+        <TextBlock TextAlignment="Center" FontSize="50" Foreground="{StaticResource GrayColor}" Text="Лента товаров" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Border MinWidth="350" Grid.Row="0" x:Name="SerchBarBorder" CornerRadius="30" Background="{StaticResource YellowColor}" Height="50" VerticalAlignment="Top" Margin="15,30,15,0" Grid.Column="2">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Margin="30, 0, 0, 0" HorizontalAlignment="Stretch" x:Name="SearchBox" TextChanged="SearchBox_TextChanged" FontSize="22" TextAlignment="Left" VerticalAlignment="Center"/>
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             Command ="Search"
                             HorizontalAlignment="Right"
-                            Background="#06283D"
+                            Background="Black"
                             BorderBrush="Transparent"
                             Margin="0,0,10,0"
                             Width="30"
-                            Height="30" Cursor="Hand">
+                            Height="30" Cursor="Hand"
+                        Grid.Column="1">
                     <materialDesign:PackIcon Kind="Search" Foreground="White"/>
                 </Button>
             </Grid>
         </Border>
-        <ScrollViewer  Grid.Row="1" Grid.Column="1">
+        <ScrollViewer Grid.Column="1" Margin="0,112,0,0" Grid.RowSpan="2">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <ItemsControl x:Name="items" ItemsSource="{Binding Products}">
                     <ItemsControl.ItemTemplate>
@@ -54,26 +57,27 @@
             </StackPanel>
         </ScrollViewer>
 
-        <ScrollViewer  Grid.Row="1" Grid.Column="0">
-            <Border CornerRadius="10" Background="White" >
+        <ScrollViewer Grid.Column="3" Margin="0,112,0,0" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
+            <Border CornerRadius="10" Background="{StaticResource YellowColor}" >
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                    <TextBlock Margin="10"> Цена </TextBlock>
+                    <TextBlock Margin="10"> Цена</TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" Margin="5"> От </TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="5"> От</TextBlock>
                         <components:NumberBox x:Name="LowerPrice" Margin="5,10,10,10" Width="60" HorizontalAlignment="Left"/>
-                        <TextBlock VerticalAlignment="Center"> До </TextBlock>
+                        <TextBlock VerticalAlignment="Center"> До</TextBlock>
                         <components:NumberBox x:Name ="TopPrice" Margin="5,10,10,10" Width="60" HorizontalAlignment="Right"/>
                     </StackPanel>
-                    <TextBlock Margin="10"> Категория </TextBlock>
+                    <TextBlock Margin="10"> Категория</TextBlock>
                     <ComboBox x:Name="CaterogyComboBox" Margin="10" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
-                    <TextBlock Margin="10"> Скидка </TextBlock>
+                    <TextBlock Margin="10"> Скидка</TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="HasSale" Margin="10"> Есть </CheckBox>
-                        <CheckBox x:Name="NoSale" Margin="10"> Нет </CheckBox>
+                        <CheckBox x:Name="HasSale" Margin="10">Есть</CheckBox>
+                        <CheckBox x:Name="NoSale" Margin="10">Нет</CheckBox>
                     </StackPanel>
                     <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
                             Margin="20" 
                             Command="{Binding ApplyFilterCommand}" 
+                            Background="{StaticResource OrangeColor}"
                             Cursor="Hand">
                         <Button.CommandParameter>
                             <MultiBinding Converter="{StaticResource MyConverter}">
