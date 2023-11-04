@@ -15,6 +15,7 @@
             <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#f8c365"/>
             <SolidColorBrush x:Key="YellowColor" Color="#f8c365"/>
             <SolidColorBrush x:Key="BackgroundColor" Color="#434050"/>
+            <SolidColorBrush x:Key="DarkerBackgroundColor" Color="#2D2B34"/>
             <SolidColorBrush x:Key="OrangeColor" Color="#c77135"/>
             <SolidColorBrush x:Key="GrayColor" Color="#a4b2d4"/>
             <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary200Foreground}"/>

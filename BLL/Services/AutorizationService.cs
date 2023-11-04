@@ -12,7 +12,6 @@ namespace BLL
         public UserType type;
         public int id;
         public string Name;
-        public string Status;
     }
     public class AutorizationService : IAutorizationService
     {
@@ -40,7 +39,6 @@ namespace BLL
                     curUser.type = UserType.Customer;
                     curUser.id = c.id;
                     curUser.Name = c.name;
-                    curUser.Status = "покупатель";
                     return true;
                 }
 
@@ -56,7 +54,6 @@ namespace BLL
                     curUser.type = UserType.Seller;
                     curUser.id = s.id;
                     curUser.Name = s.name;
-                    curUser.Status = "продавец";
                     return true;
                 }
 

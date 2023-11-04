@@ -168,7 +168,7 @@ namespace Construct_Main.ViewModel
             }
             else
             {
-                MainText = "Добро пожаловать, " + u.Name + '\n' + u.Status;
+                MainText = "Добро пожаловать, " + u.Name + '\n' + (u.type == UserType.Seller ? "продавец" : "покупатель");
                 IsAuth = Visibility.Collapsed;
                 IsReg = Visibility.Collapsed;
                 IsIn = Visibility.Visible;
@@ -184,7 +184,7 @@ namespace Construct_Main.ViewModel
             if (authService.TryAuthorization(login, password))
             {
                 var u = authService.GetCurrentUser();
-                MainText = u.Name + ", Вы успешно вошли,\nкак " + u.Status;
+                MainText = u.Name + ", Вы успешно вошли,\nкак " + (u.type == UserType.Seller ? "продавец" : "покупатель");
                 IsAuth = Visibility.Hidden;
                 IsReg = Visibility.Hidden;
                 IsIn = Visibility.Visible;
