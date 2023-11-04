@@ -137,7 +137,7 @@ namespace Construct_Main.ViewModel
                     string name = (string)values[0];
                     string sername = (string)values[1];
                     string login = (string)values[2];
-                    string pass = (string)values[3];
+                    PasswordBox pass = (PasswordBox)values[3];
                     PasswordBox passcheck = (PasswordBox)values[4];
                     if (name == null || sername  == null || login == null || passcheck == null)
                     {
@@ -227,12 +227,12 @@ namespace Construct_Main.ViewModel
             IsIn = Visibility.Collapsed;
         }
 
-        public void Register(string name, string sername, string login, string pass, PasswordBox passcheck)
+        public void Register(string name, string sername, string login, PasswordBox pass, PasswordBox passcheck)
         {
-            if (pass == passcheck.Password)
+            if (pass.Password.Equals(passcheck.Password))
             {
-                authService.CreateCustomer(name, sername, login, pass);
-                Authorization(login, pass);
+                authService.CreateCustomer(name, sername, login, pass.Password);
+                Authorization(login, pass.Password);
             }
             else
             {

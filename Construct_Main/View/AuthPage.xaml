@@ -136,7 +136,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0"  FontSize="22" Margin="10" FontWeight="Bold">Пароль:</TextBlock>
-                        <TextBox Grid.Column="1" x:Name="Password" FontSize="22" TextAlignment="Justify" MinWidth="230" Margin="5" MaxLength="18"/>
+                        <PasswordBox Grid.Column="1" x:Name="Password" FontSize="22" MinWidth="230" Margin="5" MaxLength="18"/>
                     </Grid>
                 </Border>
 
@@ -161,7 +161,7 @@
                             <Binding Path="Text" ElementName="Name"/>
                             <Binding Path="Text" ElementName="SerName"/>
                             <Binding Path="Text" ElementName="Login"/>
-                            <Binding Path="Text" ElementName="Password"/>
+                            <Binding ElementName="Password"/>
                             <Binding ElementName="PasswordCheck"/>
                         </MultiBinding>
                     </Button.CommandParameter>
