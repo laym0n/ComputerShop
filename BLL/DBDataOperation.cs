@@ -54,7 +54,7 @@ namespace BLL
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();
             Category c = context.Categories.GetList().Where(i => i.id == p.CategoryId).FirstOrDefault();
 
-            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, sale = p.Sale, count = 0, Manufacturer = m, Category = c };
+            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, sale = p.Sale, count = p.Count, Manufacturer = m, Category = c };
             context.Products.Create(newProduct);
             Save();
             return newProduct.id;

@@ -21,19 +21,25 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" 
-                   Margin="00,0,0,0"
-                   FontSize="40"
+        <TextBlock Text="Страница продукта" FontWeight="Bold" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="{StaticResource GrayColor}" FontSize="40"/>
+        <TextBlock Grid.ColumnSpan="2" 
+                   Margin="0 5"
+                   Grid.Row="1" 
+                   FontSize="40" 
+                   Foreground="{StaticResource GrayColor}"
                    FontWeight="Bold"
-                   DataContext="{Binding productModel}" Text="{Binding Name}"></TextBlock>
+                   DataContext="{Binding productModel}" Text="{Binding Name}"/>
 
         <Button Grid.Column="1" Grid.Row="0"
+                Background="{StaticResource YellowColor}"
                 Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,0"
@@ -41,81 +47,74 @@
             <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
         </Button>
 
-        <Image Grid.Column="0" Grid.Row="1" Margin="0,20,0,0"  DataContext="{Binding productModel}" Source="{Binding CategoryImageSource}" HorizontalAlignment="Left" />
-
-        <Grid Grid.Row="1" Grid.Column="1" Margin="0,20,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" Grid.Column="0" DataContext="{Binding productModel}" 
-                       Margin="10,10,0,0"
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="Цена: " FontSize="30" Foreground="{StaticResource GrayColor}"/>
+            <TextBlock DataContext="{Binding productModel}" 
+                       Margin="10,0,0,0"
                        FontSize="30"
-                       FontWeight="Bold"
-                       Text="{Binding PriceString}"></TextBlock>
+                       Foreground="{StaticResource GrayColor}"
+                       Text="{Binding PriceString}"/>
 
+            <TextBlock
+                       Margin="10,0,0,0"
+                       FontSize="30"
+                       Foreground="{StaticResource GrayColor}"
+                       Text="Количество на складе: "/>
+            <TextBlock DataContext="{Binding productModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="30"
+                       Foreground="{StaticResource GrayColor}"
+                       Text="{Binding Count}"/>
+        </StackPanel>
 
-            <Button Grid.Row="0" Grid.Column="1" Name="addButton" Cursor="Hand" Width="40" Height="40"
-                    Margin="0,10,0,0"
-                    HorizontalAlignment="Left"
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+            <TextBlock
+                       FontSize="30"
+                       Foreground="{StaticResource GrayColor}"
+                       Text="Производитель: "/>
+
+            <TextBlock DataContext="{Binding productModel}" 
+                       FontSize="30"
+                       Foreground="{StaticResource GrayColor}"
+                       Text="{Binding ManufacturerName}"/>
+        </StackPanel>
+
+        <StackPanel Margin="0 5" Orientation="Vertical" Grid.Row="4" Grid.ColumnSpan="2">
+            <TextBlock
+                       FontSize="30"
+                       Foreground="{StaticResource GrayColor}"
+                       Text="Описание"/>
+
+            <TextBlock DataContext="{Binding productModel}" 
+                       TextWrapping="Wrap"
+                       FontSize="30"
+                       Foreground="{StaticResource GrayColor}"
+                       Text="{Binding Description}"/>
+        </StackPanel>
+
+        <Button Grid.Row="5" Grid.Column="1" Name="addButton" Cursor="Hand" Width="135" Height="42"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Right"
+                    Background="{StaticResource OrangeColor}"
                     IsEnabled="{Binding Count, Converter={StaticResource IntToBool}}"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     DataContext="{Binding productModel}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.AddToBusketCommand}"
                     CommandParameter="{Binding Id}"
                     Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.IsInBusket, Converter={StaticResource NegateBoolToVisibility}}">
 
-                <materialDesign:PackIcon Kind="ShoppingBasket" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
-            </Button>
+            Заказать
+        </Button>
 
-            <Button Grid.Row="0" Grid.Column="1" Name="removeButton" Cursor="Hand" Width="40" Height="40"
-                    Margin="0,10,0,0"
-                    HorizontalAlignment="Left"
+        <Button Grid.Row="5" Grid.Column="1" Name="removeButton" Cursor="Hand" Width="auto" Height="40"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Right"
                     IsEnabled="{Binding Count, Converter={StaticResource IntToBool}}"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    Background="Red"
+                    Background="{StaticResource YellowColor}"
                     DataContext="{Binding productModel}"
                     Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.IsInBusket, Converter={StaticResource BoolToVisibility}}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.RemoveProductCommand}"
                     CommandParameter="{Binding Id}">
-                <materialDesign:PackIcon Kind="ShoppingBasketMinus" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
-            </Button>
-
-            <TextBlock Grid.Row="1" Grid.Column="0"
-                       Margin="10,20,0,0"
-                       FontSize="20"
-                       FontWeight="Bold">
-                Количество на складе:</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" DataContext="{Binding productModel}" 
-                       Margin="10,20,0,0"
-                       FontSize="20"
-                       Text="{Binding Count}"></TextBlock>
-        </Grid>
-
-        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2">
-            <TextBlock Margin="10,20,0,0"
-                       FontSize="20"
-                       FontWeight="Bold">
-                Описание</TextBlock>
-            <TextBlock DataContext="{Binding productModel}" 
-                       Margin="10"
-                       FontSize="20"
-                       Text="{Binding Description}"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
-            <TextBlock Margin="10"
-                       FontSize="20">
-                Производитель: </TextBlock>
-            <TextBlock DataContext="{Binding productModel}" 
-                       Margin="10"
-                       FontSize="20"
-                       Text="{Binding ManufacturerName}"></TextBlock>
-        </StackPanel>
+            Отменить заказ
+        </Button>
     </Grid>
 </Page>

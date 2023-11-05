@@ -46,7 +46,7 @@
                     Margin="20,35,0,0"
                     Command="{Binding SideMenuCommand}"
                     Cursor="Hand">
-                <materialDesign:PackIcon Kind="Menu" Foreground="White"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource DarkerBackgroundColor}"></materialDesign:PackIcon>
             </Button>
 
             <components:SideMenu x:Name="SideMenuBar" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-260,30,0,0" Loaded="SideMenuBar_Loaded"/>
