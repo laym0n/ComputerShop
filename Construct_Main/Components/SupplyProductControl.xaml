@@ -9,11 +9,11 @@
     <Border CornerRadius="5" Background="{StaticResource YellowColor}" BorderBrush="Gray" BorderThickness="1" MinHeight="80" Margin="10" Padding="6">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock FontSize="25" Text="{Binding Category}" HorizontalAlignment="Center" VerticalAlignment="Center"/>

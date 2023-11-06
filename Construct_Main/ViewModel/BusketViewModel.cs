@@ -20,7 +20,7 @@ namespace Construct_Main.ViewModel
         public string PriceString { get; set; }
         public int ProductCount { get; set; }
         public string CountString { get; set; }
-        public string CategoryImageSource { get; set; }
+        public string Category { get; set; }
     }
     public class BusketViewModel : INotifyPropertyChanged
     {
@@ -140,7 +140,7 @@ namespace Construct_Main.ViewModel
                         ProductName = name, 
                         PriceString = price, 
                         CountString = cart.ProductCounts[i].ToString(),
-                        CategoryImageSource = p.Category
+                        Category = p.Category
                     });
                 }
         }

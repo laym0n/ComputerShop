@@ -10,18 +10,18 @@
 
     <Grid Background="{Binding Path=Background}" Margin="0,30,0,0">
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="50" Margin="70,0,0,0">
-            Корзина
-        </TextBlock>
-        <ScrollViewer  Grid.Column="0" Grid.Row="1">
+        <TextBlock Foreground="{StaticResource GrayColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="50" Text="Корзина"/>
+
+
+        <ScrollViewer  Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <ItemsControl ItemsSource="{Binding BusketLines}">
                     <ItemsControl.ItemTemplate>
@@ -33,10 +33,10 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="White" Margin="10">
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="{StaticResource YellowColor}" Margin="10" Height="auto" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                <TextBlock HorizontalAlignment="Center" FontSize="25"> Заказ </TextBlock>
-                <TextBlock HorizontalAlignment="Left" FontSize="15" Margin="10"> Итого</TextBlock>
+                <TextBlock Foreground="Black" HorizontalAlignment="Center" FontSize="25" Text="Заказ"/>
+                <TextBlock Foreground="Black" HorizontalAlignment="Left" FontSize="15" Margin="10" Text="Итого" />
                 <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="10" FontWeight="Bold" Text="{Binding PriceText}"></TextBlock>
                 <StackPanel Orientation="Horizontal" Height="auto">
                     <TextBlock HorizontalAlignment="Left" FontSize="15" Margin="10"></TextBlock>
@@ -44,6 +44,8 @@
                 </StackPanel>
                 <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                         Command="{Binding MakeOrderCommand}"
+                        Foreground="Black"
+                        Background="{StaticResource OrangeColor}"
                         Margin="10" VerticalAlignment="Bottom" materialDesign:ButtonAssist.CornerRadius="5" Cursor="Hand">
                     Заказать
                 </Button>
