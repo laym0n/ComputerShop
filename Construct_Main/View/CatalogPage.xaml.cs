@@ -25,10 +25,10 @@ namespace Construct_Main.View
     public partial class CatalogPage : Page
     {
         private CatalogViewModel VM;
-        public CatalogPage(List<ProductModel> products, List<CategoryModel> categories, MainViewModel mainWindow, OrderModel busket)
+        public CatalogPage(List<ProductModel> products, List<CategoryModel> categories, MainViewModel mainWindow, OrderModel busket, List<ManufacturerModel> Manufacturers)
         {
             InitializeComponent();
-            VM = new CatalogViewModel(products, categories, mainWindow, busket);
+            VM = new CatalogViewModel(products, categories, mainWindow, busket, Manufacturers);
             DataContext = VM;
         }
 

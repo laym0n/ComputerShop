@@ -79,8 +79,7 @@
                             <Binding Path="Number" ElementName="LowerPrice"/>
                             <Binding Path="Number" ElementName="TopPrice"/>
                             <Binding Path="SelectedValue" ElementName="CaterogyComboBox"/>
-                            <Binding Path="IsChecked" ElementName="HasSale"/>
-                            <Binding Path="IsChecked" ElementName="NoSale"/>
+                            <Binding Path="SelectedValue" ElementName="ProducerComboBox"/>
                         </MultiBinding>
                     </Button.CommandParameter>
                     Применить

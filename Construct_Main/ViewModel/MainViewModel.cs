@@ -32,6 +32,7 @@ namespace Construct_Main.ViewModel
 
         private List<ProductModel> pr;
         private List<CategoryModel> cat;
+        private List<ManufacturerModel> Manufacturer;
 
         private OrderModel Busket;
 
@@ -192,8 +193,9 @@ namespace Construct_Main.ViewModel
 
             pr = crudServ.GetAllProduct();
             cat = crudServ.GetAllCategories();
+            Manufacturer = crudServ.GetAllManufacturers();
 
-            MainFrame.Navigate(new View.CatalogPage(pr, cat, this, Busket));
+            MainFrame.Navigate(new View.CatalogPage(pr, cat, this, Busket, Manufacturer));
             SideMenuBar.DataContext = this;
             MainWindow = mainWindow;
         }
@@ -250,7 +252,8 @@ namespace Construct_Main.ViewModel
         private void NavigatetoToCatalogPage()
         {
             CheckForProductUpdate();
-            MainFrame.Navigate(new View.CatalogPage(pr, cat, this, Busket));
+            
+            MainFrame.Navigate(new View.CatalogPage(pr, cat, this, Busket, Manufacturer));
             SideMenuBar.CloseSide();
         }
 

@@ -21,8 +21,7 @@ namespace Construct_Main.ViewModel
         private decimal lowPrice;
         private decimal topPrice;
         private int categoryId;
-        private bool hasSale;
-        private bool noSale;
+        private int prodId;
         private bool visibleFilter = true;
 
         #region Commands
@@ -47,9 +46,8 @@ namespace Construct_Main.ViewModel
                 decimal low =  (decimal)values[0];
                 decimal top = (decimal)values[1];
                 int catid = values[2] == null ? -1 : (int)values[2];
-                bool hasS = (bool)values[3];
-                bool noS = (bool)values[4];
-                SetFilters(low, top, catid, hasS, noS);
+                int prodid = values[3] == null ? -1 : (int)values[3];
+                SetFilters(low, top, catid, prodid);
             }));
             }
         }
@@ -121,7 +119,7 @@ namespace Construct_Main.ViewModel
         private List<ProductModel> productModels { get; set; }
         public List<CategoryModel> Categories { get; set; }
         public List<ManufacturerModel> Manufacturers { get; set; }
-        public CatalogViewModel(List<ProductModel> productModels, List<CategoryModel> categories, MainViewModel mainWindow, OrderModel cart)
+        public CatalogViewModel(List<ProductModel> productModels, List<CategoryModel> categories, MainViewModel mainWindow, OrderModel cart, List<ManufacturerModel> Manufacturers)
         {
             Products = new ObservableCollection<ProductModel>();
 
@@ -129,6 +127,7 @@ namespace Construct_Main.ViewModel
 
             SetProducts(productModels);
             Categories = categories;
+            this.Manufacturers = Manufacturers;
             this.mainWindow = mainWindow;
             this.cart = cart;
         }
@@ -139,13 +138,12 @@ namespace Construct_Main.ViewModel
             foreach (var item in pr)
                 Products.Add(item);
         }
-        public void SetFilters(decimal low, decimal top, int catId, bool hasS, bool noS)
+        public void SetFilters(decimal low, decimal top, int catId, int prodId)
         {
             lowPrice = low;
             topPrice = top;
             categoryId = catId;
-            hasSale = hasS;
-            noSale = noS;
+            this.prodId = prodId;
             ApplyFilter(searchRequest);
         }
         public void ApplyFilter(string request)
@@ -171,11 +169,8 @@ namespace Construct_Main.ViewModel
                 pr = pr.Where(i => i.Price < topPrice).ToList();
             if (categoryId != -1)
                 pr = pr.Where(i => i.CategoryId == categoryId).ToList();
-            if (!(hasSale && noSale))
-                if (hasSale)
-                    pr = pr.Where(i => i.Sale > 0).ToList();
-                else
-                    pr = pr.Where(i => i.Sale == 0).ToList();
+            if (prodId != -1)
+                pr = pr.Where(i => i.ManufId == prodId).ToList();
 
             SetProducts(pr);
 
