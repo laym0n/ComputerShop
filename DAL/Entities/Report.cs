@@ -2,20 +2,11 @@
 
 namespace DAL
 {
-    public class SupSum
+    public class Report
     {
-        public string SupName { get; set; }
-        public decimal? TotalCost { get; set; }
-    }
-
-    public class OrderFromTo
-    {
-        public int Id { get; set; }
-        public int Customer { get; set; }
-        public int Status { get; set; }
-        public int Seller { get; set; }
-        public DateTime? Date { get; set; }
-        public decimal TotalCost { get; set; }
-        public string Products { get; set; }
+        public int CountOrders { get; set; }
+        public int CountSuccessOrders { get; set; }
+        public int CountProductsInOrders { get; set; }
+        public int Money { get; set; }
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Construct_Main.View"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ReportPage">
@@ -11,80 +12,74 @@
     <Page.Resources>
         <local:BoolToVisibility x:Key="BoolToVisibilityConverter"></local:BoolToVisibility>
         <local:NegateBoolToVisibility x:Key="NegateBoolToVisibilityConverter"></local:NegateBoolToVisibility>
+        <local:MyConverter x:Key="MyConverter"></local:MyConverter>
     </Page.Resources>
-    
+
     <Grid Background="{Binding Path=Background}" Margin="70,30,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="170"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button HorizontalAlignment="Center" Margin="100, 0, 0, 0"
-                    Command="{Binding ChangeReportCommand}"
-                    CommandParameter="true"
-                    x:Name="PopularButton"
-                    Style="{DynamicResource MaterialDesignFlatDarkButton}" Cursor="Hand">
-                Отчет за период
-            </Button>
+        <TextBlock Text="Отчет по продажам" Grid.ColumnSpan="2" FontSize="45" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource GrayColor}"/>
 
-            <Button HorizontalAlignment="Center" Margin="300,0,0,0"
-                    Command="{Binding ChangeReportCommand}"
-                    CommandParameter="false"
-                    x:Name="CategotyButton"
-                    Style="{DynamicResource MaterialDesignFlatDarkButton}">
-                Прогноз
-            </Button>
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10" Background="{StaticResource YellowColor}" Margin="10" Height="auto" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <TextBlock Foreground="Black" HorizontalAlignment="Center" FontSize="25" Text="Период"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontSize="20" Margin="10, 0" Text="От" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom"/>
+                    <DatePicker x:Name="From" Margin="0, 0, 10, 0" FontSize="20" Grid.Row="0" Grid.Column="1"/>
+                    <TextBlock FontSize="20" Margin="10, 0" Text="До" Grid.Row="1" Grid.Column="0"/>
+                    <DatePicker x:Name="To" Margin="0, 0, 10, 0" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+                <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                        Command="{Binding CalculateReport}"
+                        Foreground="Black"
+                        Background="{StaticResource OrangeColor}"
+                        Margin="10" VerticalAlignment="Bottom" materialDesign:ButtonAssist.CornerRadius="5" Cursor="Hand">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MyConverter}">
+                            <Binding Path="SelectedDate" ElementName="From"/>
+                            <Binding Path="SelectedDate" ElementName="To"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                    Рассчитать
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Количество заказов: "/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="{Binding CountOrders}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Количество выполненных: "/>
+                <TextBlock FontSize="20" Margin="10" Text="{Binding CountSuccessOrders}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Количество заказанных товаров: "/>
+                <TextBlock FontSize="20" Margin="10" Text="{Binding CountProducts}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Прибыль: "/>
+                <TextBlock FontSize="20" Margin="10" Text="{Binding Money}"/>
+            </StackPanel>
         </StackPanel>
-        
-        <ScrollViewer Grid.Row="1" Visibility="{Binding IsFromTo, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <StackPanel Orientation="Vertical">
-                <TextBlock FontSize="20" Margin="10" FontWeight="Bold">Период</TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">От</TextBlock>
-                    <DatePicker x:Name="From" FontSize="20" Margin="10" SelectedDateChanged="SelectedDateChanged"></DatePicker>
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">До</TextBlock>
-                    <DatePicker x:Name="To" FontSize="20" Margin="10" SelectedDateChanged="SelectedDateChanged"></DatePicker>
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">Количество заказов: </TextBlock>
-                    <TextBlock FontSize="20" Margin="10" Text="{Binding CountOrders}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="10"> Заказов</TextBlock>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">Выполненых:</TextBlock>
-                    <TextBlock FontSize="20" Margin="8" Text="{Binding CountComplete}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="8" FontWeight="Bold">Заказаных:</TextBlock>
-                    <TextBlock FontSize="20" Margin="8" Text="{Binding CountOrdered}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="8" FontWeight="Bold">Подтвержденных:</TextBlock>
-                    <TextBlock FontSize="20" Margin="8" Text="{Binding CountVerified}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="8" FontWeight="Bold">Отмененных:</TextBlock>
-                    <TextBlock FontSize="20" Margin="8" Text="{Binding CountCancel}"></TextBlock>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">Чистая прибыль:</TextBlock>
-                    <TextBlock FontSize="20" Margin="10" Text="{Binding ClearProfit}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="10">Руб.</TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
-
-        <ScrollViewer Grid.Row="1" Visibility="{Binding IsFromTo, Converter={StaticResource NegateBoolToVisibilityConverter}}">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">Прогнозируемая з/п:</TextBlock>
-                    <TextBlock FontSize="20" Margin="10" Text="{Binding ForecastWage}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="10"> Руб.</TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Margin="10" FontWeight="Bold">Премия:</TextBlock>
-                    <TextBlock FontSize="20" Margin="10" Text="{Binding ForecastAward}"></TextBlock>
-                    <TextBlock FontSize="20" Margin="10"> Руб.</TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
     </Grid>
 </Page>

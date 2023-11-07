@@ -2,25 +2,17 @@
 
 namespace BLL
 {
-    public class SupSum
-    {
-        public string SupName { get; set; }
-        public decimal? TotalCost { get; set; }
-    }
-
     public class Forecast
     {
         public decimal ForecastWage { get; set; }
         public decimal ForecastAward { get; set; }
     }
-    public class OrderFromTo
+
+    public class ReportModel
     {
-        public int Id { get; set; }
-        public int Customer { get; set; }
-        public int Status { get; set; }
-        public int Seller { get; set; }
-        public DateTime? Date { get; set; }
-        public decimal TotalCost { get; set; }
-        public string Products { get; set; }
+        public int CountOrders { get; set; }
+        public int CountSuccessOrders { get; set; }
+        public int CountProductsInOrders { get; set; }
+        public int Money { get; set; }
     }
 }

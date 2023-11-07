@@ -29,10 +29,5 @@ namespace Construct_Main.View
             InitializeComponent();
         }
 
-        private void SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            VM.RecalculateData(From.SelectedDate, To.SelectedDate);
-        }
-
     }
 }

@@ -8,7 +8,6 @@ namespace DAL
 {
     public interface IReportsRepositoty
     {
-        List<SupSum> TotalCostBySupplier(int supId);
-        List<OrderFromTo> ExecuteSP(DateTime from, DateTime to);
+        Report GetReport(DateTime from, DateTime to);
     }
 }

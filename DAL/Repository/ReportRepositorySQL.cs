@@ -14,33 +14,20 @@ namespace DAL
             this.context = context;
         }
 
-        public List<SupSum> TotalCostBySupplier(int supId)
+        public Report GetReport(DateTime from, DateTime to)
         {
-            /*var request = */
-            return context.Supplier.Join(context.Product, s => s.id, p => p.id_manufacturer, (s, p) => new { SupId = s.id, SupName = s.name, ProdPrice = p.price, ProdCount = p.count }).Where(s => s.SupId == supId).GroupBy(s => s.SupName).Select(s => new SupSum() { SupName = s.Key, TotalCost = s.Sum(a => a.ProdPrice * a.ProdCount) }).ToList();
-
-
-            //return request.Select(i => new SupSum { SupName = i.SupName, TotalCost = (decimal)i.TotalCost }).ToList();
-        }
-
-        public List<OrderFromTo> ExecuteSP(DateTime from, DateTime to)
-        {
-
-            SqlParameter param1 = new SqlParameter("@fr", from);
-            SqlParameter param2 = new SqlParameter("@t", to);
-
-            var request = context.Database.SqlQuery<OrderC>("OrdersFromTo @fr, @t", new object[] { param1, param2 }).ToList();
-
-            return request.Select(i => new OrderFromTo
-            {
-                Id = i.id,
-                Customer = (int)i.id_client,
-                Status = (int)i.id_status,
-                Date = i.date,
-                Seller = (int)i.id_seller,
-                TotalCost = (decimal)i.total_cost,
-                Products = String.Join(" , ", context.OrderC.Where(o => o.id == i.id).Join(context.Order_line, o => o.id, l => l.id_order, (o, l) => l).Join(context.Product, a => a.id_product, p => p.id, (a, p) => p.name))
-            }).ToList();
+            Report report = new Report();
+            report.CountProductsInOrders = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to)
+                .Join(context.Order_line.ToList(), i => i.id, i => i.OrderC.id, (i, j) => j.count)
+                .Sum().GetValueOrDefault(0);
+            report.CountOrders = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to).Count();
+            report.Money = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to)
+                .Where(i => i.OrderStatus.id == context.OrderStatus.ToList().Max(j => j.id))
+                .Sum(i => i.total_cost).GetValueOrDefault(0);
+            report.CountSuccessOrders = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to)
+                .Where(i => i.OrderStatus.id == context.OrderStatus.ToList().Max(j => j.id))
+                .Count();
+            return report;
         }
     }
 }

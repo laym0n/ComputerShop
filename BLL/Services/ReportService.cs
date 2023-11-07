@@ -13,14 +13,15 @@ namespace BLL
             context = repos;
         }
 
-        public SupSum TotalCostBySupplier(int supId)
+        public ReportModel getReport(DateTime from, DateTime to)
         {
-            return context.Reports.TotalCostBySupplier(supId).Select(i => new SupSum { SupName = i.SupName, TotalCost = i.TotalCost }).FirstOrDefault();     
-        }
-
-        public List<OrderFromTo> ExecuteSP(DateTime from, DateTime to)
-        {
-            return context.Reports.ExecuteSP(from, to).Select(i => new OrderFromTo { Customer = i.Customer, Status = i.Status, Date = i.Date, Id = i.Id, Products = i.Products, Seller = i.Seller, TotalCost = i.TotalCost }).ToList();
+            ReportModel reportModel = new ReportModel();
+            Report report = context.Reports.GetReport(from, to);
+            reportModel.CountSuccessOrders = report.CountSuccessOrders;
+            reportModel.CountProductsInOrders = report.CountProductsInOrders;
+            reportModel.CountOrders = report.CountOrders;
+            reportModel.Money = report.Money;
+            return reportModel;
         }
     }
 }
