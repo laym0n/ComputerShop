@@ -115,12 +115,6 @@ namespace Construct_Main.ViewModel
 
         public void UpdateBusket()
         {
-            //cart = db.GetAllOrders().Where(i => i.CustomerId == 0 && i.Status == 3).FirstOrDefault();
-            //if (cart != null)
-            //    PriceText = cart.TotalCost.ToString();
-            //else
-            //    PriceText = "0";
-
             PriceText = cart.TotalCost.ToString();
         }
 
@@ -147,9 +141,6 @@ namespace Construct_Main.ViewModel
         
         public void RemoveProduct(int id)
         {
-            //db.DeleteOrderLine(cart.Id, id);
-            //products.Where(i => i.Id == id).FirstOrDefault().IsInBusket = false;
-
             for (int i = 0; i < cart.ProductsIds.Count; ++i)
             {
                 if (cart.ProductsIds[i] == id)
@@ -167,21 +158,13 @@ namespace Construct_Main.ViewModel
 
         public void AddCount(int id)
         {
-            //OrderLineModel o = new OrderLineModel
-            //{
-            //    Count = 1,
-            //    Id = -1,
-            //    ProductId = id,
-            //    OrderId = cart.Id
-            //};
-
-            //db.AddOrderLine(o);
             for (int i = 0; i < cart.ProductsIds.Count; ++i)
             {
-                if (cart.ProductsIds[i] == id)
+                if (cart.ProductsIds[i] == id && products.Where(a => a.Id == id).FirstOrDefault().Count > cart.ProductCounts[i])
                 {
                     cart.ProductCounts[i]++;
                     cart.TotalCost += products.Where(a => a.Id == id).FirstOrDefault().Price;
+                    break;
                 }
             }
 
@@ -191,17 +174,6 @@ namespace Construct_Main.ViewModel
 
         public void SubCount(int id)
         {
-            //OrderLineModel o = new OrderLineModel
-            //{
-            //    Count = -1,
-            //    Id = -1,
-            //    ProductId = id,
-            //    OrderId = cart.Id
-            //};
-
-            //if(db.AddOrderLine(o))
-            //    products.Where(i => i.Id == id).FirstOrDefault().IsInBusket = false;
-
             for (int i = 0; i < cart.ProductsIds.Count; ++i)
             {
                 if (cart.ProductsIds[i] == id)

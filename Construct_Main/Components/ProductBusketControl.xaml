@@ -21,27 +21,25 @@
             <TextBlock x:Name="Id" Text="{Binding ProductId}" Visibility="Hidden"></TextBlock>
             
             <TextBlock Text="{Binding ProductName}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="25"/>
-            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+            <Button Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.SubCountCommand}"
                         Background="{StaticResource OrangeColor}"
-                        Width="30" Height="30" Cursor="Hand">
-                    <Button.CommandParameter>
-                        <Binding Path="Text" ElementName="Id"></Binding>
-                    </Button.CommandParameter>
-                    <materialDesign:PackIcon Kind="Minus" Foreground="White"></materialDesign:PackIcon>
-                </Button>
-                <TextBlock Text="{Binding CountString}" VerticalAlignment="Center" FontSize="30" Margin="10"/>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        Width="30" Height="30" Cursor="Hand" HorizontalAlignment="Left" Margin="5, 0, 0, 0">
+                <Button.CommandParameter>
+                    <Binding Path="Text" ElementName="Id"></Binding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Minus" Foreground="White"></materialDesign:PackIcon>
+            </Button>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Text="{Binding CountString}" VerticalAlignment="Center" FontSize="30" Margin="10"/>
+            <Button Grid.Column="2" HorizontalAlignment="Right" Margin="0, 0, 5, 0"  Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         Background="{StaticResource OrangeColor}"
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.AddCountCommand}"
-                        Width="30" Height="30" HorizontalAlignment="Right">
-                    <Button.CommandParameter>
-                        <Binding Path="Text" ElementName="Id"></Binding>
-                    </Button.CommandParameter>
-                    <materialDesign:PackIcon Kind="Plus" Foreground="White"></materialDesign:PackIcon>
-                </Button>
-            </StackPanel>
+                        Width="30" Height="30">
+                <Button.CommandParameter>
+                    <Binding Path="Text" ElementName="Id"></Binding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Plus" Foreground="White"></materialDesign:PackIcon>
+            </Button>
             <TextBlock Text="{Binding PriceString}" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Cursor="Hand"/>
 
             <Button Grid.Column="4" Cursor="Hand" Width="30" Height="30" BorderBrush="Transparent"

@@ -177,18 +177,21 @@ namespace Construct_Main.ViewModel
         }
         public void AddProductToBusket(int id)
         {
+            ProductModel product = productModels.FirstOrDefault(i => i.Id == id);
 
             cart.ProductsIds.Add(id);
             cart.ProductCounts.Add(1);
-            cart.TotalCost += productModels.Where(i => i.Id == id).FirstOrDefault().Price;
+            cart.TotalCost += product.Price;
 
-            productModels.Where(i => i.Id == id).FirstOrDefault().IsInBusket = true;
+            product.IsInBusket = true;
 
-            ApplyFilter(searchRequest);
+            int index = Products.IndexOf(product);
+            Products.Remove(product);
+            Products.Insert(index, product);
         }
         public void RemoveProduct(int id)
         {
-
+            ProductModel product = productModels.FirstOrDefault(i => i.Id == id);
 
             for (int i = 0; i < cart.ProductsIds.Count; i++)
             {
@@ -196,13 +199,15 @@ namespace Construct_Main.ViewModel
                 {
                     cart.ProductsIds.RemoveAt(i);
                     cart.ProductCounts.RemoveAt(i);
-                    cart.TotalCost -= productModels.Where(a => a.Id == id).FirstOrDefault().Price;
+                    cart.TotalCost -= product.Price;
                 }
             }
 
-            productModels.Where(i => i.Id == id).FirstOrDefault().IsInBusket = false;
+            product.IsInBusket = false;
 
-            ApplyFilter(searchRequest);
+            int index = Products.IndexOf(product);
+            Products.Remove(product);
+            Products.Insert(index, product);
         }
 
         public void ToProductPage(int id)
