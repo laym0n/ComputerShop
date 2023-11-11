@@ -17,7 +17,7 @@
     <Border CornerRadius="5" Background="{StaticResource YellowColor}" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="6">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
                 <ColumnDefinition Width="120"></ColumnDefinition> 
                 <ColumnDefinition Width="*"></ColumnDefinition>

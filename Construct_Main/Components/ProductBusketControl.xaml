@@ -9,7 +9,7 @@
     <Border CornerRadius="5" Background="{StaticResource YellowColor}" BorderBrush="Gray" BorderThickness="1" Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
