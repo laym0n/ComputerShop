@@ -107,7 +107,6 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
-    <Compile Include="ViewModel\RecommendationViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
     <Compile Include="ViewModel\SupplyViewModel.cs" />
     <Compile Include="View\AuthPage.xaml.cs">
@@ -124,9 +123,6 @@
     </Compile>
     <Compile Include="View\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ReccomendationPage.xaml.cs">
-      <DependentUpon>ReccomendationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
@@ -198,10 +194,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProductPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ReccomendationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -56,7 +56,6 @@
     <Compile Include="Interfaces\IDbCrud.cs" />
     <Compile Include="Interfaces\IForecastService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
-    <Compile Include="Interfaces\IRecommendationService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\ISupplyService.cs" />
     <Compile Include="Models\Category.cs" />
@@ -73,7 +72,6 @@
     <Compile Include="Services\AutorizationService.cs" />
     <Compile Include="Services\ForecastService.cs" />
     <Compile Include="Services\OrderService.cs" />
-    <Compile Include="Services\RecommendationService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\SupplyService.cs" />
     <Compile Include="Util\ServiceModule.cs" />

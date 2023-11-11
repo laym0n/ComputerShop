@@ -21,7 +21,6 @@ namespace Construct_Main.ViewModel
         private IDbCrud crudServ;
         private IOrderService orderServ;
         private IReportService reportServ;
-        private IRecommendationService recommendServ;
         private IAutorizationService authServ;
         private IForecastService foreServ;
         private ISupplyService supplyService;
@@ -59,9 +58,6 @@ namespace Construct_Main.ViewModel
                             break;
                         case "Order":
                             NavigatetoToOrderPage();
-                            break;
-                        case "Reccomendation":
-                            NavigatetoToReccomendationPage();
                             break;
                         case "Report":
                             NavigatetoToReportPage();
@@ -184,7 +180,6 @@ namespace Construct_Main.ViewModel
             crudServ = kernel.Get<IDbCrud>();
             orderServ = kernel.Get<IOrderService>();
             reportServ = kernel.Get<IReportService>();
-            recommendServ = kernel.Get<IRecommendationService>();
             authServ = kernel.Get<IAutorizationService>();
             foreServ = kernel.Get<IForecastService>();
             supplyService = kernel.Get<ISupplyService>();
@@ -221,13 +216,6 @@ namespace Construct_Main.ViewModel
             Busket = crudServ.CreateBusket();
             pr = crudServ.GetAllProduct();
             MainFrame.Navigate(new View.SupplyPage(crudServ, supplyService, pr));
-            SideMenuBar.CloseSide();
-        }
-
-        private void NavigatetoToReccomendationPage()
-        {
-            CheckForProductUpdate();
-            MainFrame.Navigate(new View.ReccomendationPage(pr, recommendServ, authServ, this, Busket));
             SideMenuBar.CloseSide();
         }
 

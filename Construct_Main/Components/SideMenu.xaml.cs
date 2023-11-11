@@ -38,8 +38,6 @@ namespace Construct_Main.Components
                     return OrdersButton;
                 case "Auth":
                         return AuthButton;
-                case "Recommendation":
-                    return ReccomendationButton;
                 case "Report":
                     return ReportButton;
             }
