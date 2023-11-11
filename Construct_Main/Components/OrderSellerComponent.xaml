@@ -7,7 +7,7 @@
              mc:Ignorable="d" >
     
     
-    <Border x:Name="OrderBorder" CornerRadius="5" Background="{StaticResource YellowColor}" BorderBrush="Gray" BorderThickness="1" Margin="10" Width="630">
+    <Border x:Name="OrderBorder" CornerRadius="5" Background="{StaticResource YellowColor}" BorderBrush="Gray" BorderThickness="1" Margin="10">
         <Grid x:Name="OrderWrapper">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
@@ -40,12 +40,6 @@
                         <Binding Path="Text" ElementName="Id"></Binding>
                     </Button.CommandParameter>
                     <materialDesign:PackIcon Kind="Clock" Foreground="White"></materialDesign:PackIcon>
-                </Button>
-
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-
-                        Margin="10" Visibility="{Binding VerifiedVisibility}" Background="Orange" Cursor="Hand">
-                    <materialDesign:PackIcon Kind="ShopAlert"  Foreground="White"></materialDesign:PackIcon>
                 </Button>
 
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="10" Visibility="{Binding CompleteVisibility}" Background="Green" Cursor="Hand">
