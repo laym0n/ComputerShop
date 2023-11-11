@@ -13,7 +13,6 @@ namespace DAL
         IRepository<OrderStatus> Statuses { get; }
         IRepository<Supply> Supplies { get; }
         IRepository<SupplyLine> SupplyLines { get; }
-        IRepository<Supplier> Suppliers { get; }
         IReportsRepositoty Reports { get; }     
         int Save();
 

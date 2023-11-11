@@ -28,7 +28,6 @@ namespace DAL
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Seller> Seller { get; set; }
-        public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
         //public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<SupplyLine> SupplyLine { get; set; }

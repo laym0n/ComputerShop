@@ -24,11 +24,6 @@ namespace BLL
         {
             return context.Orders.GetList().Select(i => new OrderModel(i)).ToList();
         }
-
-        public List<SupplierModel> GetAllSuppliers()
-        {
-            return context.Suppliers.GetList().Select(i => new SupplierModel(i)).ToList();
-        }
         public List<ManufacturerModel> GetAllManufacturers()
         {
             return context.Manufacturers.GetList().Select(i => new ManufacturerModel(i)).ToList();

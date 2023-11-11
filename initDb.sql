@@ -46,3 +46,10 @@ INSERT INTO Customers
 VALUES
 ('as', 'as', 'as', 'as'),
 ('customer', 'pass', 'Иван', 'Иванов');
+
+DELETE FROM Products;
+
+INSERT INTO Products 
+VALUES
+('as', 'as', 'as', 'as'),
+('customer', 'pass', 'Иван', 'Иванов');

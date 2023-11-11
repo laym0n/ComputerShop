@@ -22,10 +22,8 @@ namespace DAL
     
         public int id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public Nullable<int> id_supplier { get; set; }
         public Nullable<decimal> total_cost { get; set; }
-    
-        public virtual Supplier Supplier { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SupplyLine> SupplyLine { get; set; }
     }

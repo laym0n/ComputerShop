@@ -10,7 +10,6 @@ namespace BLL
         List<CategoryModel> GetAllCategories();
         List<CustomerModel> GetAllCustomers();
         List<SellerModel> GetAllSellers();
-        List<SupplierModel> GetAllSuppliers();
         ProductModel GetProduct(int id);
         int CreateProduct(ProductModel p);
         void UpdateProduct(ProductModel p);

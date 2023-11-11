@@ -14,7 +14,6 @@
         private OrderStatusRepositorySQL orderStatusRepository;
         private SupplyRepositorySQL supplyRepositorySQL;
         private SupplyLineRepositorySQL supplyLineRepositorySQL;
-        private SupplierRepositorySQL supplierRepositorySQL;
         public DbReposSQL()
         {
             context = new ComputerShopContext();
@@ -27,16 +26,6 @@
                 if(productRepository == null)
                     productRepository = new ProductRepositorySQL(context);
                 return productRepository;
-            }
-        }
-
-        public IRepository<Supplier> Suppliers
-        {
-            get
-            {
-                if (supplierRepositorySQL == null)
-                    supplierRepositorySQL = new SupplierRepositorySQL(context);
-                return supplierRepositorySQL;
             }
         }
 

@@ -67,7 +67,6 @@
     <Compile Include="Models\ReportModels.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\Seller.cs" />
-    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Supply.cs" />
     <Compile Include="Models\SupplyLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

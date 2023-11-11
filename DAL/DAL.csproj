@@ -101,13 +101,9 @@
     <Compile Include="Repository\ProductRepositorySQL.cs" />
     <Compile Include="Repository\ReportRepositorySQL.cs" />
     <Compile Include="Repository\SellerRepositorySQL.cs" />
-    <Compile Include="Repository\SupplierRepositorySQL.cs" />
     <Compile Include="Repository\SupplyLineRepositorySQL.cs" />
     <Compile Include="Repository\SupplyRepositorySQL.cs" />
     <Compile Include="Seller.cs">
-      <DependentUpon>ComputerShopModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Supplier.cs">
       <DependentUpon>ComputerShopModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Supply.cs">

@@ -47,8 +47,6 @@ namespace BLL
             {
                 id = id,
                 date = DateTime.Now,
-                id_supplier = supplyDto.SupplierId,
-                Supplier = context.Suppliers.GetItem(supplyDto.SupplierId),
                 total_cost = supplyDto.TotalCost,
                 SupplyLine = suppliedProducts
             };

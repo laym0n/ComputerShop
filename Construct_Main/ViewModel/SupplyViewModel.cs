@@ -169,7 +169,6 @@ namespace Construct_Main.ViewModel
         private ISupplyService supplyService;
         public ObservableCollection<AddSupplyLine> AddProductLines { get; set; }
         public ObservableCollection<SupplyLine> SupplyLines { get; set; }
-        public List<SupplierModel> Suppliers { get; set; }
         public List<ProductModel> Products { get; set; }
         public List<CategoryModel> Categories { get; set; }
         public List<ManufacturerModel> Manufacturers { get; set; }
@@ -178,7 +177,6 @@ namespace Construct_Main.ViewModel
             AddProductLines = new ObservableCollection<AddSupplyLine>();
             SupplyLines = new ObservableCollection<SupplyLine>();
             this.context = db;
-            Suppliers = context.GetAllSuppliers();
             Products = pr;
             Categories = context.GetAllCategories();
             Manufacturers = context.GetAllManufacturers();

@@ -10,7 +10,6 @@ namespace BLL
     public class SupplyModel
     {
         public int Id { get; set; }
-        public int SupplierId { get; set; }
         public DateTime Date { get; set; }
         public decimal TotalCost { get; set; }
         public List<int> ProductsIds { get; set; }
@@ -21,7 +20,6 @@ namespace BLL
         public SupplyModel(Supply s)
         {
             Id = s.id;
-            SupplierId = (int)s.id_supplier;
             Date = (DateTime)s.date;
             TotalCost = (decimal)s.total_cost;
 
