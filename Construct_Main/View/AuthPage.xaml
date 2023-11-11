@@ -52,6 +52,7 @@
                 Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                 Width="170" Cursor="Hand"
                 Command="{Binding AuthCommand}"
+                Foreground="Black"
                 Background="{StaticResource OrangeColor}">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MyConverter}">
@@ -67,6 +68,7 @@
                 Width="170" Cursor="Hand"
                 Margin="10"
                 Command="{Binding OpenRegisterCommand}"
+                Foreground="Black"
                 Background="{StaticResource OrangeColor}">
                 Зарегистрироваться
             </Button>
@@ -76,6 +78,7 @@
                 Background="{StaticResource OrangeColor}" 
                 Style="{StaticResource MaterialDesignFlatDarkBgButton}"
                 Width="170" Cursor="Hand"
+                Foreground="Black"
                 Command="{Binding LogOutCommand}"
                 VerticalAlignment="Center">
                 Выйти с аккаунта
@@ -86,11 +89,11 @@
         <Button Grid.Row="0"
                 Grid.Column="2"
                 Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                HorizontalAlignment="Left"
-                Margin="217,59,0,58"
+                HorizontalAlignment="Right"
+                Margin="10"
                 Command="{Binding CloseRegisterCommand}"
                 Visibility="{Binding IsReg}" Width="40">
-            <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="{StaticResource YellowColor}"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="{StaticResource YellowColor}"/>
         </Button>
 
         <ScrollViewer Grid.Column="1" Grid.Row="1"  Visibility="{Binding IsReg}">

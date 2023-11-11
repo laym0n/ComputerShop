@@ -73,6 +73,7 @@
                             Margin="15, 20, 15, 5"
                             Command="{Binding ApplyFilterCommand}" 
                             Background="{StaticResource OrangeColor}"
+                            Foreground="Black"
                             Cursor="Hand">
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource MyConverter}">
@@ -87,6 +88,7 @@
                 <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
                             Margin="15, 5, 15, 15"
                             Command="{Binding ChangeVisibiltyFilter}" 
+                            Foreground="Black"
                             Background="{StaticResource OrangeColor}"
                             Cursor="Hand">
                     Скрыть фильтры
@@ -96,6 +98,7 @@
         <Button Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
                 Grid.Column="1"
                 Grid.Row="1"
+                            Foreground="Black"
                 Margin="0 10 0 0" 
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"

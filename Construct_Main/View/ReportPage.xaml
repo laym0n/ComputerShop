@@ -68,17 +68,17 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Количество выполненных: "/>
-                <TextBlock FontSize="20" Margin="10" Text="{Binding CountSuccessOrders}"/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="{Binding CountSuccessOrders}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Количество заказанных товаров: "/>
-                <TextBlock FontSize="20" Margin="10" Text="{Binding CountProducts}"/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="{Binding CountProducts}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="Прибыль: "/>
-                <TextBlock FontSize="20" Margin="10" Text="{Binding Money}"/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource GrayColor}" Text="{Binding Money}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

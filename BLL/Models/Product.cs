@@ -35,7 +35,7 @@ namespace BLL
             Category = p.Category.name;
             Description = p.description;
             Count = (int)p.count;
-            IsInBusket = p.Order_line.Where(i => i.OrderC.id_status == 3).FirstOrDefault() == null ? false : true; 
+            IsInBusket = false; 
             
         }
     }

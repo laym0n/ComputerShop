@@ -149,8 +149,6 @@ namespace Construct_Main.ViewModel
             Orders.Clear();
             foreach (var item in or)
             {
-                if (item.Status != 3)
-                {
                     List<ProductLine> pr = new List<ProductLine>();
 
                     for (int i = 0; i < item.ProductsIds.Count; ++i)
@@ -179,7 +177,6 @@ namespace Construct_Main.ViewModel
                         VerifiedVisibility = Visibility.Collapsed,
                         CustomerInfo = c.Name + " " + item.Date
                     });
-                }
             }
         }
         private void SetOrdersForCustomer(List<OrderModel> or)
@@ -187,7 +184,7 @@ namespace Construct_Main.ViewModel
             Orders.Clear();
             foreach (var item in or)
             {
-                if (item.Status != 3 && item.CustomerId == authService.GetCurrentUser().id)
+                if (item.CustomerId == authService.GetCurrentUser().id)
                 {
                     List<ProductLine> pr = new List<ProductLine>();
 
