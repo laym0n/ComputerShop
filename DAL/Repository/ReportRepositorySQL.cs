@@ -22,10 +22,10 @@ namespace DAL
                 .Sum().GetValueOrDefault(0);
             report.CountOrders = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to).Count();
             report.Money = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to)
-                .Where(i => i.OrderStatus.id == context.OrderStatus.ToList().Max(j => j.id))
+                .Where(i => i.OrderStatus.id == 2)
                 .Sum(i => i.total_cost).GetValueOrDefault(0);
             report.CountSuccessOrders = context.OrderC.ToList().Where(i => i.date >= from && i.date <= to)
-                .Where(i => i.OrderStatus.id == context.OrderStatus.ToList().Max(j => j.id))
+                .Where(i => i.OrderStatus.id == 2)
                 .Count();
             return report;
         }

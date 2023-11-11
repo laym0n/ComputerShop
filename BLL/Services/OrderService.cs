@@ -18,18 +18,18 @@ namespace BLL
             
             OrderC o = context.Orders.GetItem(id);
            
-                foreach (var ol in o.Order_line)
-                {
-                    Product p = context.Products.GetItem((int)ol.id_product);
-                    p.count += ol.count;
-                    context.Products.Update(p);
-                }
-
-                o.id_status = 4;
-                context.Orders.Update(o);
-                if (context.Save() > 0)
-                    return true;
-                return false;
+            foreach (var ol in o.Order_line)
+            {
+                Product p = context.Products.GetItem((int)ol.id_product);
+                p.count += ol.count;
+                context.Products.Update(p);
+            }
+            
+            o.id_status = 3;
+            o.OrderStatus = context.Statuses.GetItem(3);
+            if (context.Save() > 0)
+                return true;
+            return false;
 
         }
         public bool MakeOrderFromModel(OrderModel orderDto, IAutorizationService autorizationService)
@@ -95,6 +95,7 @@ namespace BLL
             o.id_status = 2;
             o.id_seller = autorizationService.GetCurrentUser().id;
             o.Seller = context.Sellers.GetItem((int)o.id_seller);
+            o.OrderStatus = context.Statuses.GetItem(2);
 
             if (context.Save() > 0)
                 return true;

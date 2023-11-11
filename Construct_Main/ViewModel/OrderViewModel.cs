@@ -173,10 +173,10 @@ namespace Construct_Main.ViewModel
                         TotalCost = item.TotalCost,
                         Products = pr,
                         TotalCount = "Товаров " + item.ProductCounts.Sum().ToString() + " шт.",
-                        CancelVisibility = item.Status != 0 && item.Status != 4 ? Visibility.Visible : Visibility.Collapsed,
-                        CompleteVisibility = item.Status == 0 ? Visibility.Visible : Visibility.Collapsed,
+                        CancelVisibility = item.Status != 2 && item.Status != 3 ? Visibility.Visible : Visibility.Collapsed,
+                        CompleteVisibility = item.Status == 2 ? Visibility.Visible : Visibility.Collapsed,
                         OrderedVisibility = item.Status == 1 ? Visibility.Visible : Visibility.Collapsed,
-                        VerifiedVisibility = item.Status == 2 ? Visibility.Visible : Visibility.Collapsed,
+                        VerifiedVisibility = Visibility.Collapsed,
                         CustomerInfo = c.Name + " " + item.Date
                     });
                 }
@@ -211,10 +211,10 @@ namespace Construct_Main.ViewModel
                         TotalCost = item.TotalCost,
                         Products = pr,
                         TotalCount = "Товаров " + item.ProductCounts.Sum().ToString() + " шт.",
-                        CancelVisibility = item.Status != 0 && item.Status != 4 ? Visibility.Visible : Visibility.Collapsed,
-                        CompleteVisibility = item.Status == 0 ? Visibility.Visible : Visibility.Collapsed,
+                        CancelVisibility = item.Status != 2 && item.Status != 3 ? Visibility.Visible : Visibility.Collapsed,
+                        CompleteVisibility = item.Status == 2 ? Visibility.Visible : Visibility.Collapsed,
                         OrderedVisibility = item.Status == 1 ? Visibility.Visible : Visibility.Collapsed,
-                        VerifiedVisibility = item.Status == 2 ? Visibility.Visible : Visibility.Collapsed,
+                        VerifiedVisibility = Visibility.Collapsed,
                         CustomerInfo = c.Name
                     });
                 }

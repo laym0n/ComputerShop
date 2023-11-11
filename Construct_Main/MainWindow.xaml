@@ -49,7 +49,7 @@
                 <materialDesign:PackIcon Kind="Menu" Foreground="{StaticResource DarkerBackgroundColor}"></materialDesign:PackIcon>
             </Button>
 
-            <components:SideMenu x:Name="SideMenuBar" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-260,30,0,0" Loaded="SideMenuBar_Loaded"/>
+            <components:SideMenu x:Name="SideMenuBar" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-270,30,0,0" Loaded="SideMenuBar_Loaded"/>
 
             <Frame Margin="10,35,10,10" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
 
