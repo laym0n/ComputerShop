@@ -12,7 +12,6 @@ namespace BLL
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string PriceString { get; set; }
-        public int Sale { get; set; }
         public int ManufId { get; set; }
         public string ManufacturerName { get; set; }
         public int CategoryId { get; set; }
@@ -28,9 +27,9 @@ namespace BLL
             Name = p.name;
             Price = (int)p.price;
             PriceString = Price.ToString() + " Р.";
-            ManufId = (int)p.id_manufacturer;
+            ManufId = (int)p.Manufacturer.id;
             ManufacturerName = p.Manufacturer.name;
-            CategoryId = (int)p.id_category;
+            CategoryId = (int)p.Category.id;
             Category = p.Category.name;
             Description = p.description;
             Count = (int)p.count;

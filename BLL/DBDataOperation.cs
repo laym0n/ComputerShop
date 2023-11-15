@@ -49,7 +49,7 @@ namespace BLL
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();
             Category c = context.Categories.GetList().Where(i => i.id == p.CategoryId).FirstOrDefault();
 
-            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, count = p.Count, Manufacturer = m, Category = c };
+            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, count = p.Count, Manufacturer = m, Category = c };
             context.Products.Create(newProduct);
             Save();
             return newProduct.id;
@@ -61,8 +61,6 @@ namespace BLL
             pr.price = p.Price;
             pr.description = p.Description;
             pr.name = p.Name;
-            pr.id_category = p.CategoryId;
-            pr.id_manufacturer = p.ManufId;
             pr.count = p.Count;
 
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();
@@ -93,7 +91,7 @@ namespace BLL
         }
         public void DeleteOrderLine(int orderId, int productId)
         {
-            Order_line o = context.OrderLines.GetList().Where(i => i.id_order == orderId && i.id_product == productId).FirstOrDefault();
+            Order_line o = context.OrderLines.GetList().Where(i => i.OrderC.id == orderId && i.Product.id == productId).FirstOrDefault();
             if (o != null)
             {
                 o.OrderC.total_cost -= (int?)(o.count * o.Product.price);
@@ -124,7 +122,6 @@ namespace BLL
                 ProductCounts = new List<int>(),
                 Products = "",
                 ProductsIds = new List<int>(),
-                SellerId = -1,
                 Status = 3,
                 StatusName = ""/*context.Statuses.GetItem(3).name*/,
                 TotalCost = 0
@@ -133,7 +130,7 @@ namespace BLL
         }
         public bool AddOrderLine(OrderLineModel o)
         {
-            Order_line orl = context.Orders.GetItem(o.OrderId).Order_line.Where(i => i.id_product == o.ProductId).FirstOrDefault();
+            Order_line orl = context.Orders.GetItem(o.OrderId).Order_line.Where(i => i.Product.id == o.ProductId).FirstOrDefault();
 
             if (orl == null)
             {
@@ -142,15 +139,13 @@ namespace BLL
                     id = o.Id;
                 else
                 {
-                    var ordline = context.OrderLines.GetList().Where(i => i.id_order == o.OrderId).OrderByDescending(i => i.id).FirstOrDefault();
+                    var ordline = context.OrderLines.GetList().Where(i => i.OrderC.id == o.OrderId).OrderByDescending(i => i.id).FirstOrDefault();
                     id = ordline == null ? 0 : ordline.id + 1;
                 }
 
                 Order_line ol = new Order_line
                 {
                     id = id,
-                    id_product = o.ProductId,
-                    id_order = o.OrderId,
                     count = o.Count,
                     OrderC = context.Orders.GetItem(o.OrderId),
                     Product = context.Products.GetItem(o.ProductId),

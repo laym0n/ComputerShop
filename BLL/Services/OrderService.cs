@@ -20,12 +20,11 @@ namespace BLL
            
             foreach (var ol in o.Order_line)
             {
-                Product p = context.Products.GetItem((int)ol.id_product);
+                Product p = context.Products.GetItem((int)ol.Product.id);
                 p.count += ol.count;
                 context.Products.Update(p);
             }
             
-            o.id_status = 3;
             o.OrderStatus = context.Statuses.GetItem(3);
             if (context.Save() > 0)
                 return true;
@@ -50,7 +49,7 @@ namespace BLL
 
                 if (p == null)
                     throw new Exception("Продукт не найден");
-                orderedProducts.Add(new Order_line {id = lineid++, id_product = p.id, Product = p, count = orderDto.ProductCounts[i],id_order = id});
+                orderedProducts.Add(new Order_line {id = lineid++, Product = p, count = orderDto.ProductCounts[i]});
                 sum += (int)(p.price * orderDto.ProductCounts[i]);
 
                 p.count -= orderDto.ProductCounts[i];
@@ -62,16 +61,15 @@ namespace BLL
             OrderC r = new OrderC
             {
                 date = DateTime.Now,
-                id_client = autorizationService.GetCurrentUser().id,
-                id_seller = null,
                 total_cost = sum,
                 Order_line = orderedProducts,
                 id = id,
                 Seller = null,
                 Customer = c,
-                id_status = 1,
                 OrderStatus = context.Statuses.GetItem(1)
             };
+
+            orderedProducts.ForEach(line => line.OrderC = r);
 
             context.Orders.Create(r);
             if (context.Save() > 0)
@@ -82,7 +80,7 @@ namespace BLL
         public bool TakeOrder(int id, IAutorizationService autorizationService)
         {
             OrderC o = context.Orders.GetItem(id);
-            o.id_status = 0;
+            o.OrderStatus = context.Statuses.GetItem(0);
 
             if (context.Save() > 0)
                 return true;
@@ -92,9 +90,8 @@ namespace BLL
         public bool VerifyOrder(int id, IAutorizationService autorizationService)
         {
             OrderC o = context.Orders.GetItem(id);
-            o.id_status = 2;
-            o.id_seller = autorizationService.GetCurrentUser().id;
-            o.Seller = context.Sellers.GetItem((int)o.id_seller);
+            o.OrderStatus = context.Statuses.GetItem(2);
+            o.Seller = context.Sellers.GetItem((int)autorizationService.GetCurrentUser().id);
             o.OrderStatus = context.Statuses.GetItem(2);
 
             if (context.Save() > 0)

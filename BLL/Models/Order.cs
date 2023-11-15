@@ -9,7 +9,6 @@ namespace BLL
     public class OrderModel
     {
         public int Id { get; set; }
-        public int? SellerId { get; set; }
         public int CustomerId { get; set; }
         public DateTime? Date { get; set; }
         public decimal TotalCost { get; set; }
@@ -24,10 +23,9 @@ namespace BLL
         public OrderModel(OrderC o)
         {
             Id = o.id;
-            SellerId = o.id_seller;
-            CustomerId = (int)o.id_client;
+            CustomerId = (int)o.Customer.id;
             Date = o.date;
-            Status = (int)o.id_status;
+            Status = (int)o.OrderStatus.id;
             StatusName = o.OrderStatus.name;
             Products = String.Join(" , ", o.Order_line.Select(i => i.Product.name));
             ProductsIds = o.Order_line.Select(i => i.Product.id).ToList();

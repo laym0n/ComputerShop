@@ -18,7 +18,6 @@ namespace DAL
         public int id_supply { get; set; }
         public Nullable<int> count { get; set; }
         public Nullable<decimal> price { get; set; }
-        public Nullable<int> id_product { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Supply Supply { get; set; }

@@ -202,8 +202,7 @@ namespace Construct_Main.ViewModel
                 CategoryId = id_cat,
                 ManufId = id_manuf,
                 Count = count,
-                Name = name,
-                Sale = 0
+                Name = name
             };
 
             SupplyLines.Add(new SupplyLine

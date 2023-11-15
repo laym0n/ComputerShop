@@ -15,8 +15,6 @@ namespace DAL
     public partial class Order_line
     {
         public int id { get; set; }
-        public int id_order { get; set; }
-        public Nullable<int> id_product { get; set; }
         public Nullable<int> count { get; set; }
         public string cost { get; set; }
     

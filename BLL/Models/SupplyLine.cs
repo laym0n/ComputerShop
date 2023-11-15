@@ -23,7 +23,7 @@ namespace BLL
             SupplyId = s.id_supply;
             Price = (decimal)s.price;
             Count = (int)s.count;
-            ProductId = (int)s.id_product;
+            ProductId = (int)s.Product.id;
         }
     }
 }

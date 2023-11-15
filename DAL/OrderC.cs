@@ -21,12 +21,9 @@ namespace DAL
         }
     
         public int id { get; set; }
-        public Nullable<int> id_client { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<int> total_cost { get; set; }
         public Nullable<System.TimeSpan> time { get; set; }
-        public Nullable<int> id_seller { get; set; }
-        public Nullable<int> id_status { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

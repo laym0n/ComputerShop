@@ -34,7 +34,7 @@ namespace BLL
 
                 if (p == null)
                     throw new Exception("Продукт не найден");
-                suppliedProducts.Add(new SupplyLine { id = lineid++, id_product = p.id, Product = p, count = supplyDto.ProductCounts[i], id_supply = id, price = supplyDto.ProductPrices[i] });
+                suppliedProducts.Add(new SupplyLine { id = lineid++, Product = p, count = supplyDto.ProductCounts[i], id_supply = id, price = supplyDto.ProductPrices[i] });
 
                 p.count += supplyDto.ProductCounts[i];
 

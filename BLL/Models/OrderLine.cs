@@ -18,8 +18,8 @@ namespace BLL
         public OrderLineModel(Order_line o)
         {
             Id = o.id;
-            OrderId = o.id_order;
-            ProductId = (int)o.id_product;
+            OrderId = o.OrderC.id;
+            ProductId = (int)o.Product.id;
             Count = (int)o.count;
         }
     }
