@@ -35,15 +35,15 @@
             <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.VerifyOrderCommand}"
-                        Margin="10" Visibility="{Binding OrderedVisibility}" Background="Orange" Cursor="Hand">
+                        Margin="10" Visibility="{Binding OrderedVisibility}" Background="{StaticResource OrangeColor}" Cursor="Hand">
                     <Button.CommandParameter>
                         <Binding Path="Text" ElementName="Id"></Binding>
                     </Button.CommandParameter>
                     <materialDesign:PackIcon Kind="Clock" Foreground="White"></materialDesign:PackIcon>
                 </Button>
 
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="10" Visibility="{Binding CompleteVisibility}" Background="Green" Cursor="Hand">
-                    <materialDesign:PackIcon Kind="ShopComplete" Foreground="White"></materialDesign:PackIcon>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="10" Visibility="{Binding CompleteVisibility}" Background="{StaticResource OrangeColor}" Cursor="Hand">
+                    <materialDesign:PackIcon Kind="ShoppingMusic" Foreground="White"></materialDesign:PackIcon>
                 </Button>
 
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 

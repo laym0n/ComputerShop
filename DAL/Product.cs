@@ -26,7 +26,6 @@ namespace DAL
         public Nullable<int> id_manufacturer { get; set; }
         public Nullable<decimal> price { get; set; }
         public string name { get; set; }
-        public Nullable<int> sale { get; set; }
         public string description { get; set; }
         public Nullable<int> count { get; set; }
     

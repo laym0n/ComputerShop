@@ -20,10 +20,7 @@ namespace BLL
         {
             Id = c.id;
             Name = String.Join(" ", c.name, c.sername);
-            StartDate = (DateTime)c.start_date;
             ExperienceYears = (int)((DateTime.Now - StartDate).TotalDays / 365);
-            BaseWage = (decimal)c.wage;
-            CountOfOrders = (int)c.count_of_orders;
         }
     }
 }

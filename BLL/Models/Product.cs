@@ -28,7 +28,6 @@ namespace BLL
             Name = p.name;
             Price = (int)p.price;
             PriceString = Price.ToString() + " Р.";
-            Sale = (int)p.sale;
             ManufId = (int)p.id_manufacturer;
             ManufacturerName = p.Manufacturer.name;
             CategoryId = (int)p.id_category;

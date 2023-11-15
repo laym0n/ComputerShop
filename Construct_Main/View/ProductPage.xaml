@@ -39,12 +39,12 @@
                    DataContext="{Binding productModel}" Text="{Binding Name}"/>
 
         <Button Grid.Column="1" Grid.Row="0"
-                Background="{StaticResource YellowColor}"
+                Background="{StaticResource OrangeColor}"
                 Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,0"
                 Command="{Binding ToCatalogPageCommand}">
-            <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+            <materialDesign:PackIcon Kind="ArrowULeftBottomBold" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
         </Button>
 
         <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
@@ -109,7 +109,7 @@
                     Margin="0,0,10,0"
                     HorizontalAlignment="Right"
                     IsEnabled="{Binding Count, Converter={StaticResource IntToBool}}"
-                    Background="{StaticResource YellowColor}"
+                    Background="Red"
                     DataContext="{Binding productModel}"
                     Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.IsInBusket, Converter={StaticResource BoolToVisibility}}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.RemoveProductCommand}"

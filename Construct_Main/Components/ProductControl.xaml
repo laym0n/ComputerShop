@@ -33,9 +33,10 @@
 
             <Button Name="toProductButton" Grid.Column="3" Cursor="Hand" Width="40" Height="40"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.ToProductPageCommand}">
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.ToProductPageCommand}"
+                    Background="{StaticResource OrangeColor}">
 
-                <materialDesign:PackIcon Kind="ArrowExpand" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="CardBulleted" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
                 <Button.CommandParameter>
                     <Binding Path="Text" ElementName="Id"></Binding>
                 </Button.CommandParameter>
@@ -44,10 +45,11 @@
             <Button Name="addButton" Grid.Column="4" Cursor="Hand"
                     IsEnabled="{Binding Count, Converter={StaticResource IntToBool}}"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    Background="{StaticResource OrangeColor}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.AddToBusketCommand}"
                     Visibility="{Binding IsInBusket, Converter={StaticResource NegateBoolToVisibility}}">
 
-                <materialDesign:PackIcon Kind="ShoppingBasket" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="BasketFill" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
                 <Button.CommandParameter>
                     <Binding Path="Text" ElementName="Id"></Binding>
                 </Button.CommandParameter>
@@ -59,7 +61,7 @@
                     Background="Red"
                     Visibility="{Binding IsInBusket, Converter={StaticResource BoolToVisibility}}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.RemoveProductCommand}">
-                <materialDesign:PackIcon Kind="ShoppingBasketMinus" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="BasketUnfill" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
                 <Button.CommandParameter>
                     <Binding Path="Text" ElementName="Id"></Binding>
                 </Button.CommandParameter>

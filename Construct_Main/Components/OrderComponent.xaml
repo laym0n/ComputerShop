@@ -33,7 +33,7 @@
             <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center">
 
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="10" Visibility="{Binding CompleteVisibility}" Background="Green" Cursor="Hand">
-                    <materialDesign:PackIcon Kind="ShopComplete" Foreground="White"/>
+                    <materialDesign:PackIcon Kind="ShoppingMusic" Foreground="White"/>
                 </Button>
 
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 

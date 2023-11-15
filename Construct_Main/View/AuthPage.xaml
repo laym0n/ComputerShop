@@ -90,10 +90,11 @@
                 Grid.Column="2"
                 Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                 HorizontalAlignment="Right"
+                Background="{StaticResource YellowColor}"
                 Margin="10"
                 Command="{Binding CloseRegisterCommand}"
                 Visibility="{Binding IsReg}" Width="40">
-            <materialDesign:PackIcon Kind="ArrowBackCircle" Width="20" Height="20" Foreground="{StaticResource YellowColor}"/>
+            <materialDesign:PackIcon Kind="ArrowULeftBottomBold" Width="20" Height="20"/>
         </Button>
 
         <ScrollViewer Grid.Column="1" Grid.Row="1"  Visibility="{Binding IsReg}">

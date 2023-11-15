@@ -25,10 +25,6 @@ namespace DAL
         public string password { get; set; }
         public string name { get; set; }
         public string sername { get; set; }
-        public Nullable<System.DateTime> start_date { get; set; }
-        public Nullable<int> experience_years { get; set; }
-        public Nullable<int> count_of_orders { get; set; }
-        public Nullable<decimal> wage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderC> OrderC { get; set; }
