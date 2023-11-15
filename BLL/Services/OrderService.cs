@@ -51,7 +51,7 @@ namespace BLL
                 if (p == null)
                     throw new Exception("Продукт не найден");
                 orderedProducts.Add(new Order_line {id = lineid++, id_product = p.id, Product = p, count = orderDto.ProductCounts[i],id_order = id});
-                sum += (int)(p.price * orderDto.ProductCounts[i] * (1 - p.sale));
+                sum += (int)(p.price * orderDto.ProductCounts[i]);
 
                 p.count -= orderDto.ProductCounts[i];
                 context.Products.Update(p);

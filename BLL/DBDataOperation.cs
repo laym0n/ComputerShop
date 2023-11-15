@@ -49,7 +49,7 @@ namespace BLL
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();
             Category c = context.Categories.GetList().Where(i => i.id == p.CategoryId).FirstOrDefault();
 
-            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, sale = p.Sale, count = p.Count, Manufacturer = m, Category = c };
+            Product newProduct = new Product { price = p.Price, description = p.Description, name = p.Name, id_category = p.CategoryId, id_manufacturer = p.ManufId, count = p.Count, Manufacturer = m, Category = c };
             context.Products.Create(newProduct);
             Save();
             return newProduct.id;
@@ -63,7 +63,6 @@ namespace BLL
             pr.name = p.Name;
             pr.id_category = p.CategoryId;
             pr.id_manufacturer = p.ManufId;
-            pr.sale = p.Sale;
             pr.count = p.Count;
 
             Manufacturer m = context.Manufacturers.GetList().Where(i => i.id == p.ManufId).FirstOrDefault();

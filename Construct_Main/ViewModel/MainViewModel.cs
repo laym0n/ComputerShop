@@ -22,7 +22,6 @@ namespace Construct_Main.ViewModel
         private IOrderService orderServ;
         private IReportService reportServ;
         private IAutorizationService authServ;
-        private IForecastService foreServ;
         private ISupplyService supplyService;
 
         private Frame MainFrame;
@@ -181,7 +180,6 @@ namespace Construct_Main.ViewModel
             orderServ = kernel.Get<IOrderService>();
             reportServ = kernel.Get<IReportService>();
             authServ = kernel.Get<IAutorizationService>();
-            foreServ = kernel.Get<IForecastService>();
             supplyService = kernel.Get<ISupplyService>();
 
             Busket = crudServ.CreateBusket();
@@ -197,7 +195,7 @@ namespace Construct_Main.ViewModel
 
         private void NavigatetoToReportPage()
         {
-            MainFrame.Navigate(new View.ReportPage(reportServ, authServ, foreServ));
+            MainFrame.Navigate(new View.ReportPage(reportServ));
             SideMenuBar.CloseSide();
         }
 

@@ -2,11 +2,6 @@
 
 namespace BLL
 {
-    public class Forecast
-    {
-        public decimal ForecastWage { get; set; }
-        public decimal ForecastAward { get; set; }
-    }
 
     public class ReportModel
     {

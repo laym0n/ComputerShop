@@ -22,9 +22,9 @@ namespace Construct_Main.View
     public partial class ReportPage : Page
     {
         private ViewModel.ReportViewModel VM;
-        public ReportPage(IReportService reportService, IAutorizationService autorizationService, IForecastService forecastService)
+        public ReportPage(IReportService reportService)
         {
-            VM = new ViewModel.ReportViewModel(reportService, autorizationService, forecastService);
+            VM = new ViewModel.ReportViewModel(reportService);
             DataContext = VM;
             InitializeComponent();
         }

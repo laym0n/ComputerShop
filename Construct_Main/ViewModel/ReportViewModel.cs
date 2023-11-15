@@ -11,8 +11,6 @@ namespace Construct_Main.ViewModel
     public class ReportViewModel : INotifyPropertyChanged
     {
         private IReportService reportService;
-        private IAutorizationService autorizationService;
-        private IForecastService forecastService;
 
         #region NotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -85,13 +83,9 @@ namespace Construct_Main.ViewModel
         }
         #endregion
 
-        public ReportViewModel(IReportService reportService, IAutorizationService autorizationService, IForecastService forecastService)
+        public ReportViewModel(IReportService reportService)
         {
             this.reportService = reportService;
-            this.autorizationService = autorizationService;
-            this.forecastService = forecastService;
-
-            Forecast f = forecastService.ForecastForSeller(autorizationService.GetCurrentUser().id);
         }
 
         public void RecalculateData(DateTime from, DateTime to)
