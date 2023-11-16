@@ -49,7 +49,7 @@
                 <ItemsControl x:Name="items" ItemsSource="{Binding Products}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <components:ProductControl Background="Transparent" Command="{Binding AddToBusketCommand}"></components:ProductControl>
+                            <components:ProductControl Background="Transparent"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
