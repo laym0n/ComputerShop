@@ -167,9 +167,9 @@ namespace Construct_Main.ViewModel
                 pr = pr.Where(i =>i.Price > lowPrice).ToList();
             if (topPrice > lowPrice)
                 pr = pr.Where(i => i.Price < topPrice).ToList();
-            if (categoryId != 0)
+            if (categoryId > 0)
                 pr = pr.Where(i => i.CategoryId == categoryId).ToList();
-            if (prodId != -1)
+            if (prodId > 0)
                 pr = pr.Where(i => i.ManufId == prodId).ToList();
 
             SetProducts(pr);
