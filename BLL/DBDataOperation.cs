@@ -111,7 +111,6 @@ namespace BLL
 
         public OrderModel CreateBusket()
         {
-            //int id = context.Orders.GetList().OrderByDescending(i => i.id).FirstOrDefault().id + 1;
             int id = new Random().Next();
 
             OrderModel model = new OrderModel

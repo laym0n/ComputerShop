@@ -24,10 +24,10 @@
             <TextBlock Grid.Column="3" FontSize="25" Margin="10" VerticalAlignment="Center" Text="{Binding PriceString}" TextAlignment="Center" HorizontalAlignment="Center"></TextBlock>
 
             <Button Grid.Column="4" Cursor="Hand" BorderBrush="Transparent"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="LightGray"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="{StaticResource OrangeColor}"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.RemoveProductCommand}"
                     CommandParameter="{Binding ProductId}">
-                <materialDesign:PackIcon Kind="Close" Foreground="Red"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="Close" Foreground="White"/>
             </Button>
         </Grid>
 

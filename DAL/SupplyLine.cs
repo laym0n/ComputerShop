@@ -15,7 +15,6 @@ namespace DAL
     public partial class SupplyLine
     {
         public int id { get; set; }
-        public int id_supply { get; set; }
         public Nullable<int> count { get; set; }
         public Nullable<decimal> price { get; set; }
     

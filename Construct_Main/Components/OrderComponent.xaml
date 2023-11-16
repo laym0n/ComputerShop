@@ -47,7 +47,8 @@
             </StackPanel>
             <Border Grid.ColumnSpan="3" Grid.Row="1" BorderBrush="Gray" BorderThickness="0,1,0,0" Margin="3"/>
 
-            <Button Click="Button_Click" Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="10" Width="30" Height="30" HorizontalAlignment="Left" Cursor="Hand" VerticalAlignment="Top">
+            <Button Click="Button_Click" Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Margin="10" Width="30" Height="30" HorizontalAlignment="Left" Cursor="Hand" VerticalAlignment="Top"
+                    Background="{StaticResource OrangeColor}">
                 <materialDesign:PackIcon x:Name="Arrow" Kind="ArrowDown" Foreground="White"/>
             </Button>
 

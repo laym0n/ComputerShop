@@ -20,7 +20,7 @@ namespace BLL
         public SupplyLineModel(SupplyLine s)
         {
             Id = s.id;
-            SupplyId = s.id_supply;
+            SupplyId = s.Supply.id;
             Price = (decimal)s.price;
             Count = (int)s.count;
             ProductId = (int)s.Product.id;
